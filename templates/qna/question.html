@@ -24,14 +24,15 @@
                 </div>
                 <br>
         </fieldset>
+        
                 {% if replies %}
-                <div style="float:center">
+                <div style="">
                     <label for="innerpara"><h3>Replies</h3></label>
                     {% for  reply in replies %}
                      <fieldset class="border border-dark">
-                        <div class="card-body text-left" style="overflow: hidden;padding:0em 1em">
-                            <p id="" class="wrap text-light" style="float-box-footer:100%">
-                            <b>{{reply.reply_text}}</b>
+                        <div class="card-body " style="float:center;padding:0em 1em">
+                            <p class="wrap text-light" >
+                            {{reply.reply_text}}
                             <p>
                         </div>
                     </fieldset>

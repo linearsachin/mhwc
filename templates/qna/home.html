@@ -6,20 +6,26 @@
 <div>
     <form method="POST" >
         {% csrf_token %}
-        {{ qForm.as_p}}
+        {{ qForm}}
         <input  class="btn btn-grey" type="submit" name="reply"  id="myBtn"style="text-align-last:left;padding:0.7em;padding-left:2em;padding-right:2em">  </input>
     </form>
 </div>
 <br>
+<form class="" method="get" action="" >
+    {% csrf_token %}
+    {{ questions.form}}
+    <button class="btn btn-grey" type="submit" style="text-align-last:left;padding:0.7em;padding-left:2em;padding-right:2em"> Search </button>
+</form>
+
 
 
 <!-- <div class="container-fluid" > -->
     <div class="container-fluid" style="margin: 0.5%;padding: 5%;">
-        {% for question  in questions %}
+        {% for question  in questions.qs %}
         <fieldset class="border border-dark">
             <div class="card-body text-left" style="overflow: hidden;padding:0em">
 
-            <p id="innerPara" class="wrap text-light" style="float-box-footer:100%"><b>{{question.question_text}}</b><p>
+            <p  class="wrap text-light" style=""><b>{{question.question_text}}</b><p>
                 <div style="float: center;margin: 0.5em 1em;" class="h6" >
                     <a href="{% url 'question' slug=question.slug %}" style="margin-left: 2em;" class="link">Reply or View Replies</a>
                 </div>
@@ -29,6 +35,7 @@
         </fieldset><br>
         {% endfor %}
     <div>
+        
 <!-- </div> -->
 
 

@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from django.utils.text import slugify
-from django.views.generic import View 
+from django.views.generic import View ,ListView
 from django.http import HttpResponse
 from .models import (
     Question,
     Reply,
 )
+from .filters import QuestionFilter
 import random
 from .forms import QuestionSubmission,ReplySubmission
 # Create your views here.
@@ -13,14 +14,14 @@ from .forms import QuestionSubmission,ReplySubmission
 class HomeView(View):
     def get(self, request):
         questions = Question.objects.all()
-        replies = Reply.objects.all()
+        question_filter = QuestionFilter(request.GET, queryset=questions)
         qForm = QuestionSubmission()
         rForm = ReplySubmission()
         context = {
-            'questions':questions,
-            'reply': replies,
+            'questions':question_filter,
             'qForm':qForm,
             'rForm':rForm,
+            
         }
         return render(request ,'qna/home.html',context)
 
@@ -28,11 +29,11 @@ class HomeView(View):
 
     def post(self,request):
         form = QuestionSubmission(self.request.POST or None)
-        rform = ReplySubmission(self.request.POST or None)
         try:
             if form.is_valid():
                 ques = form.cleaned_data.get('text')
                 trun = random.randint(20, 30)
+                print(trun)
                 slug_  =slugify(ques[:trun])
                 Question.objects.create(
                     question_text = ques,
@@ -64,7 +65,6 @@ class QuestionView(View):
                 reply = form.cleaned_data.get('text')
                 qpk = self.request.POST.get('question_pk')
                 question = Question.objects.get(pk = qpk)
-                print(question.slug)
                 # slug_  =slugify(reply)
                 Reply.objects.create(
                     reply_text = reply,
@@ -74,3 +74,28 @@ class QuestionView(View):
             return redirect("question",slug=question.slug)
         except:
             return redirect("home")
+
+
+# class SearchView(ListView):
+#     model = Question
+#     template_name = 'search.html'
+#     context_object_name = 'all_search_results'
+
+#     def get_queryset(self):
+#        result = super(SearchView, self).get_queryset()
+#        query = self.request.GET.get('search')
+#        print(query)
+#        if query:
+#           postresult = Question.objects.filter(title__contains=query)
+#           print(postresult)
+#           result = postresult
+#        else:
+#            print('none')
+#            result = None
+#        return result
+
+
+def search(request):
+    user_list = User.objects.all()
+    user_filter = UserFilter(request.GET, queryset=user_list)
+    return render(request, 'search/user_list.html', {'filter': user_filter})
