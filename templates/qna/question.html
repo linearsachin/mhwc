@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="container-fluid" style="margin: 0.25rem;padding: 0.2em;">
+        <fieldset class="border border-dark">
+        <div class="container-fluid">
+            <legend onclick="replyOpen()" style="float:right">Reply</legend><br>
+        </div>
+            <p id="innerPara" class="text-light"><b>{{question.question_text}}</b><p>
+                <div style="float: left;margin: 0.5em 1em;" class="h6" >
+                </div>
+               
+                <div class="container-fluid" style="width: 70%;display:none;" id="replyID" style="">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div style="white-space: nowrap;">
+                        <input type="hidden" value={{question.id}} name="question_pk"></input>
+                        {{ rForm.text }}
+                        <input  class="btn btn-grey" type="submit" name="reply"  id="myBtn"style="padding:0.7em;padding-left:2em;padding-right:2em"></input>
+                        </div>
+                    </form> 
+                </div>
+                <br>
+        </fieldset>
+                {% if replies %}
+                <div style="float:center">
+                    <label for="innerpara"><h3>Replies</h3></label>
+                    {% for  reply in replies %}
+                     <fieldset class="border border-dark">
+                        <div class="card-body text-left" style="overflow: hidden;padding:0em 1em">
+                            <p id="" class="wrap text-light" style="float-box-footer:100%">
+                            <b>{{reply.reply_text}}</b>
+                            <p>
+                        </div>
+                    </fieldset>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                
+            
+        
+    <div>
+</div>
+
+<script>
+    document.getElementById("checkreply").onclick = function() {replyOpen()};
+    
+    function replyOpen() {
+        if (document.getElementById('replyID').style.display == 'inherit'){
+            document.getElementById('replyID').style.display = 'none'
+        }
+        else{
+            document.getElementById('replyID').style.display = 'inherit'
+        }
+    }
+</script>
+
+{% endblock  %}

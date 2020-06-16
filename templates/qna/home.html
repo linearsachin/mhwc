@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<style >
+
+ </style>
+<div>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ qForm.as_p}}
+        <input  class="btn btn-grey" type="submit" name="reply"  id="myBtn"style="text-align-last:left;padding:0.7em;padding-left:2em;padding-right:2em">  </input>
+    </form>
+</div>
+<br>
+<br>
+
+<!-- <div class="container-fluid" > -->
+    <div class="container-fluid" style="margin: 0.5%;padding: 5%;">
+        {% for question  in questions %}
+        <fieldset class="border border-dark">
+            <div class="card-body text-left" style="overflow: hidden;padding:0em">
+
+            <p id="innerPara" class="wrap text-light" style="float-box-footer:100%"><b>{{question.question_text}}</b><p>
+                <div style="float: center;margin: 0.5em 1em;" class="h6" >
+                    <a href="{% url 'question' slug=question.slug %}" style="margin-left: 2em;" class="link">Reply or View Replies</a>
+                </div>
+            </div>
+
+            
+        </fieldset><br>
+        {% endfor %}
+    <div>
+<!-- </div> -->
+
+
+
+
+
+<script>
+    document.getElementById("checkreply").onclick = function() {replyOpen()};
+    
+    function replyOpen() {
+        if (document.getElementById('replyID').style.display == 'inherit'){
+            document.getElementById('replyID').style.display = 'none'
+        }
+        else{
+            document.getElementById('replyID').style.display = 'inherit'
+        }
+    }
+    </script>
+{% endblock  %}

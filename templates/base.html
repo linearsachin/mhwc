@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+    <style>  
+      html,
+      body,
+      header,
+      .carousel {
+        height: 60vh;
+      }
+
+      @media (max-width: 740px) {
+
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+      }
+
+      @media (min-width: 800px) and (max-width: 850px) {
+
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+      }
+      html {
+        overflow-x: hidden;
+      }
+      fieldset{
+       background: #4ca190;
+       background-repeat:no-repeat;
+       background-position:center;
+       background-size:cover;
+     }
+    p#innerPara{padding:1em ;}
+    legend{width:5em;margin-left:0.5em;padding:0em 0.75em;background-color: gray;}
+    .link { color: #FF0000; } /* CSS link color (red) */
+    .link:hover { color: #00FF00; } /* CSS link hover (green) */
+    .wrap { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
+    </style>
+</head>
+
+<body style="background-color: #CEDBDB;margin: 0px ;"> 
+{% comment %} {% include "navbar.html" %} {% endcomment %}
+
+	<div class="row">
+		<div class="col-lg-3 col-md-6 col-sm-12 col-xsm-12"></div>
+<div class="container-fluid" style="margin: auto;">
+  <div style="text-align-last: center;margin:auto; padding:1em; width:100%;height:100%; margin-top:2em; "class="container-fluid">
+    
+    
+
+
+    {% block content %}
+    {% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+  </div>
+</div>
+
+</div>
+</body>
+
+
+
+</body>
+
+
+</html>
+ 
