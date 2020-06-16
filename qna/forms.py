@@ -9,7 +9,7 @@ class QuestionSubmission(forms.Form):
         'id':"question", 
         'name':"question" ,
         'placeholder':"Ask Anything" ,
-        'rows':1,
+        'rows':2,
         'cols':6,
         'style':"width:70%; text-align-last: center;margin:auto; "
     }))
@@ -22,7 +22,7 @@ class ReplySubmission(forms.Form):
         'id':"reply", 
         'name':"reply" ,
         'placeholder':"Answer" ,
-        'rows':1,
+        'rows':2,
         'cols':6,
         'style':"width:70%; text-align-last: center;margin:auto; "
     }))
