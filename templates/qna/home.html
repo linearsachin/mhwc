@@ -6,14 +6,14 @@
 <div>
     <form method="POST" >
         {% csrf_token %}
-        {{ qForm}}
-        <input  class="btn btn-grey" type="submit" name="reply"  id="myBtn"style="text-align-last:left;padding:0.7em;padding-left:2em;padding-right:2em">  </input>
+        {{qForm}}
+        <input  class="btn btn-grey" type="submit" name="reply"  id="myBtn"style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">  </input>
     </form>
 </div>
 <br>
 <form class="" method="get" action="" >
     {{ questions.form}}
-    <button class="btn btn-grey" type="submit" style="text-align-last:left;padding:0.7em;padding-left:2em;padding-right:2em"> Search </button>
+    <button class="btn btn-grey" type="submit" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em"> Search </button>
 </form>
 
 
@@ -23,8 +23,8 @@
         {% for question  in questions.qs %}
         <fieldset class="border border-dark">
             <div class="card-body text-left" style="overflow: hidden;padding:0em">
-
-            <p  class="wrap text-light" style=""><b>{{question.question_text}}</b><p>
+                <div class="text-muted" ><small><b>{{question.get_time_diff}} {% if question.get_time_diff < 2 %}hour {% else %}hours{% endif %} ago<b></small></div>
+            <p  class="wrap text-light" ><b>{{question.question_text}}</b><p>
                 <div style="float: center;margin: 0.5em 1em;" class="h6" >
                     <a href="{% url 'question' slug=question.slug %}" style="margin-left: 2em;" class="link">Reply or View Replies</a>
                 </div>
@@ -34,6 +34,7 @@
         </fieldset><br>
         {% endfor %}
     <div>
+    <!-- </div> -->
         
 <!-- </div> -->
 

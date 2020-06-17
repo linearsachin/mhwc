@@ -6,6 +6,7 @@ from .models import (
     Question,
     Reply,
 )
+import django.utils.timezone as tz
 from .filters import QuestionFilter
 import random
 from .forms import QuestionSubmission,ReplySubmission
@@ -13,7 +14,7 @@ from .forms import QuestionSubmission,ReplySubmission
 
 class HomeView(View):
     def get(self, request):
-        questions = Question.objects.all()
+        questions = Question.objects.all().order_by('-time')
         question_filter = QuestionFilter(request.GET, queryset=questions)
         qForm = QuestionSubmission()
         rForm = ReplySubmission()
@@ -35,9 +36,11 @@ class HomeView(View):
                 trun = random.randint(20, 30)
                 print(trun)
                 slug_  =slugify(ques[:trun])
+                time = tz.now()
                 Question.objects.create(
                     question_text = ques,
                     slug = slug_,
+                    time= time,
                 )
             return redirect("question",slug=slug_)
         except:
