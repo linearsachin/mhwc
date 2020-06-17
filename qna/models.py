@@ -17,7 +17,7 @@ class Question(models.Model):
 class Reply(models.Model):
     question = models.ForeignKey(Question,on_delete=models.CASCADE,blank=True, null=True)
     reply_text = models.TextField()
-    time = models.DateTimeField(blank=True, null=True)
+    time = models.DateTimeField()
 
     def __str__(self):
         return str(self.reply_text)[:20]+"..."
