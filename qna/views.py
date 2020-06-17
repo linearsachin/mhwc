@@ -30,20 +30,20 @@ class HomeView(View):
 
     def post(self,request):
         form = QuestionSubmission(self.request.POST or None)
-    # try:
-        if form.is_valid():
-            ques = form.cleaned_data.get('text')
-            trun = random.randint(20, 30)
-            slug_  =slugify(ques[:trun])
-            time = tz.now()
-            Question.objects.create(
-                question_text = ques,
-                slug = slug_,
-                time= time,
-            )
-        return redirect("question",slug=slug_)
-        # except:
-        #     return redirect("home")
+        try:
+            if form.is_valid():
+                ques = form.cleaned_data.get('text')
+                trun = random.randint(20, 30)
+                slug_  =slugify(ques[:trun])
+                time = tz.now()
+                Question.objects.create(
+                    question_text = ques,
+                    slug = slug_,
+                    time= time,
+                )
+            return redirect("question",slug=slug_)
+        except:
+            return redirect("home")
        
 
 

@@ -4,7 +4,7 @@ import django.utils.timezone as tz
 # Create your models here.
 class Question(models.Model):
     question_text = models.TextField()
-    slug = models.SlugField(max_length=20)
+    slug = models.SlugField(max_length=50)
     time = models.DateTimeField()
     def __str__(self):
         return str(self.question_text)[:20]+"..."
