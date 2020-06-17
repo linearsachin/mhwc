@@ -3,14 +3,63 @@ from django.utils.text import slugify
 from django.views.generic import View ,ListView
 from django.http import HttpResponse
 from .models import (
+    Forum,
     Question,
     Reply,
 )
 import django.utils.timezone as tz
 from .filters import QuestionFilter
 import random
+import string
+from django.contrib import messages
+
 from .forms import QuestionSubmission,ReplySubmission
 # Create your views here.
+def randomString(stringLength=10):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
+
+
+class ForumAuthView(View):
+    def get(self, request,forum_id, *args, **kwargs):
+        forum = Forum.objects.get(forum_id=forum_id)
+        context ={
+            "forumid":forum.forum_id,
+            "forumcode":forum.forum_code,
+        }
+        return render(request ,'qna/forum-auth.html',context)
+
+    def post(self, request, *args, **kwargs):
+        forum_id = self.request.POST.get('forumid')
+        forum_code = self.request.POST.get('forumcode')
+        forum = Forum.objects.get(forum_id = forum_id)
+        if forum.forum_code == forum_code:
+            return redirect('forum',forum_id)
+        else:
+            return redirect('forum-auth',forum_id)
+
+def generateForum(request):
+    forumId = randomString(10)
+    forumCode = random.randint(100000,999999)
+    Forum.objects.create(
+        forum_id = forumId,
+        forum_code  =forumCode,
+    )
+    messages.success(request, f"Remeber This Code for further login: {forumCode}")
+    return redirect("forum-auth",forumId)
+
+
+class ForumView(View):
+    def get(self, request,forum_id, *args, **kwargs):
+        forum = Forum.objects.get(forum_id=forum_id)
+        context ={
+            "forumid":forum.forum_id,
+            "forumcode":forum.forum_code,
+        }
+        return render(request ,'qna/forum.html',context)
+
+    def post(self, request, *args, **kwargs):
+        return HttpResponse('POST request!')
 
 class HomeView(View):
     def get(self, request):
