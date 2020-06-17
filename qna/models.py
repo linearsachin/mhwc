@@ -17,8 +17,13 @@ class Question(models.Model):
 class Reply(models.Model):
     question = models.ForeignKey(Question,on_delete=models.CASCADE,blank=True, null=True)
     reply_text = models.TextField()
-    
+    time = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return str(self.reply_text)[:20]+"..."
+    def get_time_diff(self):
+        if self.time:
+            now = tz.now()
+            timediff = now - self.time
+            return int(round(timediff.total_seconds()//3600))
 

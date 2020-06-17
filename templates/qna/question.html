@@ -32,6 +32,7 @@ button1:hover{
 <div class="container-fluid">
     <div class="container-fluid" style="margin: 0.25rem;padding: 0.2em;">
         <fieldset class="border border-dark">
+        <div class="text-muted" ><small><b>{% if question.get_time_diff < 1 %}now {% elif question.get_time_diff < 2 %}{{uestion.get_time_diff}} hour ago {% else %}{{question.get_time_diff}} hours ago{% endif %} <b></small></div>
 
             <p id="innerPara" class="text-light"><b>{{question.question_text}}</b><p>
             <div class="container-fluid">
@@ -59,6 +60,8 @@ button1:hover{
                     {% for  reply in replies %}
                      <fieldset class="border border-dark">
                         <div class="card-body " style="float:center;padding:0em 1em">
+                            <div class="text-muted" ><small><b>{% if reply.get_time_diff < 1 %}now {% elif reply.get_time_diff < 2 %}{{reply.get_time_diff}} hour ago {% else %}{{reply.get_time_diff}} hours ago{% endif %} <b></small></div>
+
                             <p class="wrap text-light" >
                             {{reply.reply_text}}
                             <p>

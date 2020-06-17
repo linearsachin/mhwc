@@ -68,11 +68,11 @@ class QuestionView(View):
                 reply = form.cleaned_data.get('text')
                 qpk = self.request.POST.get('question_pk')
                 question = Question.objects.get(pk = qpk)
-                # slug_  =slugify(reply)
+                time = tz.now()
                 Reply.objects.create(
                     reply_text = reply,
                     question  = question,
-                    # slug = slug_,
+                    time=time,
                 )
             return redirect("question",slug=question.slug)
         except:
