@@ -99,7 +99,7 @@ class HomeView(View):
 class QuestionView(View):
     def get(self, request,slug, *args, **kwargs):
         question = Question.objects.get(slug = slug)
-        replies = Reply.objects.filter(question=question)
+        replies = Reply.objects.filter(question=question).order_by('-time')
         rForm = ReplySubmission()
         context = {
             'question':question,
