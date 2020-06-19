@@ -88,7 +88,7 @@ class ForumView(View):
                     slug = slug_,
                     time= time,
                 )
-            return redirect("question",forum_id=forum_id,slug=slug_,)
+            return redirect("question",slug=slug_,)
         except:
             return redirect("home")
 
