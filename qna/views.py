@@ -145,7 +145,8 @@ class AboutView(View):
 
 class QuestionView(View):
     def get(self, request,slug, *args, **kwargs):
-        question = Question.objects.get(slug = slug)
+        forum = User.objects.get(username = request.user.username)
+        question = Question.objects.get(slug = slug,forum=)
         replies = Reply.objects.filter(question=question).order_by('-time')
         rForm = ReplySubmission()
         context = {
