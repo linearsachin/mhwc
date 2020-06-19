@@ -22,7 +22,7 @@
     <button class="btn btn-grey" type="submit" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em"> Search </button>
 </form>
 {% if  not request.user.is_authenticated %}
-    <a href="{% url 'generate-forum' %}" class="btn btn-grey" style="font-color:white;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Click to generate a forum</a>
+    {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey" style="font-color:white;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Click to generate a forum</a> {% endcomment %}
 
 {% else %}
     <a href="{% url 'forum'  %}" class="btn btn-grey" style="margin-left: 2em;" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Go To Your Forum</a>
