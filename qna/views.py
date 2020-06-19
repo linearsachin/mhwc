@@ -97,7 +97,7 @@ def get_qoute():
     with open('qoutes.csv',encoding='UTF-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            if row[1]==datetime.date.today():
+            if row[1]==str(datetime.date.today()):
                 return row[0]
         return "“If we start being honest about our pain, our anger, and our shortcomings instead of pretending they don’t exist, then maybe we’ll leave the world a better place than we found it.” – Russell Wilson"
         

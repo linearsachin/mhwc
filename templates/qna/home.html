@@ -5,10 +5,9 @@
  </style>
 
 <div>
-    <div class="w3-panel w3-leftbar w3-light-grey">
-    <p class="w3-xlarge w3-serif">
-    <i>{{qoute}}</i></p>
-   
+<div class="w3-panel w3-leftbar"> 
+ <p><i class="fa fa-quote-right w3-xxlarge"></i><br>
+        <i>{{qoute}}</i></p>
     </div>
     <br>
     <form method="POST" >
@@ -18,7 +17,7 @@
     </form>
 </div>
 <br>
-<details class="btn btn-white" >
+<details class="btn btn-outline-dark" >
   <summary style=" outline: none;">Open Options</summary>
   <p><form class="" method="get" action="" >
     {{ questions.form}}
