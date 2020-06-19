@@ -7,12 +7,14 @@ from .models import (
     Question,
     Reply,
 )
+import csv
 import django.utils.timezone as tz
 from .filters import QuestionFilter
 import random
 import string
 from django.contrib import messages
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from .forms import QuestionSubmission,ReplySubmission
 # Create your views here.
 def randomString(stringLength=10):
@@ -22,18 +24,18 @@ def randomString(stringLength=10):
 
 class ForumAuthView(View):
     def get(self, request,forum_id, *args, **kwargs):
-        forum = Forum.objects.get(forum_id=forum_id)
+        forum = User.objects.get(username=forum_id)
         context ={
-            "forumid":forum.forum_id,
-            "forumcode":forum.forum_code,
+            "forumid":forum.username,
+            "forumcode":forum.password,
         }
         return render(request ,'qna/forum-auth.html',context)
 
     def post(self, request, *args, **kwargs):
         forum_id = self.request.POST.get('forumid')
         forum_code = self.request.POST.get('forumcode')
-        forum = Forum.objects.get(forum_id = forum_id)
-        if forum.forum_code == forum_code:
+        forum = authenticate(username = forum_id,password=forum_code)
+        if forum is not None:
             return redirect('forum',forum_id)
         else:
             return redirect('forum-auth',forum_id)
@@ -41,21 +43,24 @@ class ForumAuthView(View):
 def generateForum(request):
     forumId = randomString(10)
     forumCode = random.randint(100000,999999)
-    Forum.objects.create(
-        forum_id = forumId,
-        forum_code  =forumCode,
+    User.objects.create_user(
+        username = forumId,
+        password  =forumCode,
     )
+    messages.success(request, f"Your forum Id is: {forumId}")
     messages.success(request, f"Remeber This Code for further login: {forumCode}")
-    return redirect("forum-auth",forumId)
+    return redirect("forum-auth")
 
 
 class ForumView(View):
     def get(self, request,forum_id, *args, **kwargs):
-        forum = Forum.objects.get(forum_id=forum_id)
+        forum = User.objects.get(username=forum_id)
+        print(request.user)
         context ={
-            "forumid":forum.forum_id,
-            "forumcode":forum.forum_code,
+            "forumid":forum.username,
+            # "forumcode":forum.forum_code,
         }
+
         return render(request ,'qna/forum.html',context)
 
     def post(self, request, *args, **kwargs):
@@ -67,16 +72,33 @@ class HomeView(View):
         question_filter = QuestionFilter(request.GET, queryset=questions)
         qForm = QuestionSubmission()
         rForm = ReplySubmission()
+        qoute = get_qoute()
+        print(qoute)
         context = {
             'questions':question_filter,
             'qForm':qForm,
             'rForm':rForm,
+            'qoute':qoute
             
         }
         return render(request ,'qna/home.html',context)
 
+def get_qoute():
+    with open('qoutes.csv',encoding='UTF-8') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if row[1]==tz.now():
+                return row[0]
+            else:
+                return "a qoute"
+        
+class AboutView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request,'qna/about.html')
 
-
+    def post(self, request, *args, **kwargs):
+        return HttpResponse('POST request!')
     def post(self,request):
         form = QuestionSubmission(self.request.POST or None)
         try:

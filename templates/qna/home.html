@@ -5,6 +5,11 @@
  </style>
 
 <div>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+    <p class="w3-xlarge w3-serif">
+    <i>{{qoute}}</i></p>
+   
+    </div>
     <form method="POST" >
         {% csrf_token %}
         {{qForm}}
@@ -16,9 +21,9 @@
     {{ questions.form}}
     <button class="btn btn-grey" type="submit" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em"> Search </button>
 </form>
- {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Click to generate a forum</a> {% endcomment %}
-
-
+{% if not request.user.is_authenticated %}
+ <a href="{% url 'generate-forum' %}" class="btn btn-grey" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Click to generate a forum</a>
+{% endif %}
 
 <!-- <div class="container-fluid" > -->
     <div class="container-fluid" style="margin: 0.5%;padding: 5%;">

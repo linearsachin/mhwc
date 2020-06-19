@@ -12,10 +12,29 @@
 {% endif %}
 {{forumid}}
 <br>
- <form method="POST">
+  <form method="POST" action="{% url 'forum-auth'%}">
      {% csrf_token %}
-    <input type="hidden" name="forumid" value="{{forumid}}">
-    <input type="text" name="forumcode">
-    <button type="submit" class="btn btn-grey" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">submit</button>
- </form>
+    <label>Forum Id:</label>
+    <input type="text" name="username" autofocus="" required="" id="id_username">
+    <label>Forum Code:</label>
+    <input type="password" name="password" required="" id="id_password" >
+    <input type="submit" value="login" class="btn btn-grey" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">
+    <input type="hidden" name="next" value="">
+
+ </form> 
+
+
+ 
+{% comment %} <form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table> {% endcomment %}
 {% endblock %}
