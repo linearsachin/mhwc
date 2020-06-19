@@ -10,6 +10,7 @@
     <i>{{qoute}}</i></p>
    
     </div>
+    <br>
     <form method="POST" >
         {% csrf_token %}
         {{qForm}}
@@ -17,16 +18,22 @@
     </form>
 </div>
 <br>
-<form class="" method="get" action="" >
+<details class="btn btn-white" >
+  <summary style=" outline: none;">Open Options</summary>
+  <p><form class="" method="get" action="" >
     {{ questions.form}}
     <button class="btn btn-grey" type="submit" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em"> Search </button>
-</form>
-{% if  not request.user.is_authenticated %}
-    {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey" style="font-color:white;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Click to generate a forum</a> {% endcomment %}
+    </form>
+    {% if  not request.user.is_authenticated %}
+        {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey" style="font-color:white;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Click to generate a forum</a> {% endcomment %}
 
-{% else %}
-    <a href="{% url 'forum'  %}" class="btn btn-grey" style="margin-left: 2em;" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Go To Your Forum</a>
-{% endif %}
+    {% else %}
+        <a href="{% url 'forum'  %}" class="btn btn-grey" style="color:white;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Go To Your Forum</a>
+        </p>
+    {% endif %}
+</details>
+
+
 <!-- <div class="container-fluid" > -->
     <div class="container-fluid" style="margin: 0.5%;padding: 5%;">
         {% for question  in questions.qs %}

@@ -11,6 +11,7 @@ from .models import (
 import csv
 import django.utils.timezone as tz
 from .filters import QuestionFilter,PublicQuestionFilter
+import datetime 
 import random
 import string
 from django.contrib import messages
@@ -95,12 +96,11 @@ class ForumView(View):
 def get_qoute():
     with open('qoutes.csv',encoding='UTF-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
         for row in csv_reader:
-            if row[1]==tz.now():
+            if row[1]==datetime.date.today():
                 return row[0]
-            else:
-                return "“If we start being honest about our pain, our anger, and our shortcomings instead of pretending they don’t exist, then maybe we’ll leave the world a better place than we found it.” – Russell Wilson"
+        return "“If we start being honest about our pain, our anger, and our shortcomings instead of pretending they don’t exist, then maybe we’ll leave the world a better place than we found it.” – Russell Wilson"
+        
 class HomeView(View):
     def get(self, request):
         questions = PublicQuestion.objects.all().order_by('-time')
