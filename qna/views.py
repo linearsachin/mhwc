@@ -204,24 +204,6 @@ class PublicQuestionView(View):
             return redirect("publicquestion",slug=question.slug)
         except:
             return redirect("home")
-# class SearchView(ListView):
-#     model = Question
-#     template_name = 'search.html'
-#     context_object_name = 'all_search_results'
-
-#     def get_queryset(self):
-#        result = super(SearchView, self).get_queryset()
-#        query = self.request.GET.get('search')
-#        print(query)
-#        if query:
-#           postresult = Question.objects.filter(title__contains=query)
-#           print(postresult)
-#           result = postresult
-#        else:
-#            print('none')
-#            result = None
-#        return result
-
 
 def search(request):
     user_list = User.objects.all()
