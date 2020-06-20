@@ -149,7 +149,10 @@ def send_mail(question_slug):
     gmail_password = os.environ['gmail_pw']
 
     sent_from = gmail_user
-    to = ['sachineg39@gmail.com',]
+    with open('email.csv',encoding='UTF-8') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            to = row
     url = 'https://peer-space.herokuapp.com/public-question/{question}'.format(question=question_slug)
     subject = 'Message Added to Public Forum'
     body = "A Question was added to the forum.\nHelp them by visiting:\n{URL}\nThank You.".format(URL = url)
@@ -165,7 +168,7 @@ Subject: %s
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
         server.login(gmail_user, gmail_password)
-        server.sendmail(sent_from, to, email_text)
+        server.sendmail(sent_from, row, email_text)
         server.close()
     except:
         print( 'Something went wrong...')
