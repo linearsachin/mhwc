@@ -20,7 +20,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from .forms import QuestionSubmission,ReplySubmission
-# Create your views here.
+
+
+
 def randomString(stringLength=15):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
@@ -48,7 +50,7 @@ class ForumAuthView(View):
 def generateForum(request):
     if not request.user.is_authenticated:
         forumId = randomString(10)
-        forumCode = str(random.randint(100000,9999999)) + randomString(3)
+        forumCode = str(random.randint(100000,99999999)) + randomString(4)
         User.objects.create_user(
             username = forumId,
             password  =forumCode,
@@ -79,6 +81,7 @@ class ForumView(View):
             return render(request ,'qna/forum.html',context)
         except:
             return render(request ,'qna/forum.html')
+
     def post(self,request,*args, **kwargs):
         form = QuestionSubmission(self.request.POST or None)
         try:
@@ -145,7 +148,7 @@ class HomeView(View):
 
 
 def send_mail(question_slug):     
-    gmail_user = 'sachineg39@gmail.com'
+    gmail_user = os.environ['gmail_id']
     gmail_password = os.environ['gmail_pw']
 
     sent_from = gmail_user
@@ -168,7 +171,7 @@ Subject: %s
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
         server.login(gmail_user, gmail_password)
-        server.sendmail(sent_from, row, email_text)
+        server.sendmail(sent_from, to, email_text)
         server.close()
     except:
         print( 'Something went wrong...')
@@ -183,16 +186,19 @@ class AboutView(View):
 
 class QuestionView(View):
     def get(self, request,slug, *args, **kwargs):
-        forum = User.objects.get(username = request.user.username)
-        question = Question.objects.get(slug = slug,forum=forum)
-        replies = Reply.objects.filter(question=question).order_by('-time')
-        rForm = ReplySubmission()
-        context = {
-            'question':question,
-            'replies': replies,
-            'rForm':rForm,
-        }
-        return render(request ,'qna/question.html',context)
+        try:
+            forum = User.objects.get(username = request.user.username)
+            question = Question.objects.get(slug = slug,forum=forum)
+            replies = Reply.objects.filter(question=question).order_by('-time')
+            rForm = ReplySubmission()
+            context = {
+                'question':question,
+                'replies': replies,
+                'rForm':rForm,
+            }
+            return render(request ,'qna/question.html',context)
+        except:
+            return redirect('home')
        
 
     def post(self, request, *args, **kwargs):
@@ -207,6 +213,7 @@ class QuestionView(View):
                     reply_text = reply,
                     question  = question,
                     time=time,
+                    
                 )
             return redirect("question",slug=question.slug)
         except:
@@ -234,16 +241,16 @@ class PublicQuestionView(View):
                 qpk = self.request.POST.get('question_pk')
                 question = PublicQuestion.objects.get(pk = qpk)
                 time = tz.now()
+                if request.user.is_staff:
+                    is_prof = request.user.username
+                else:
+                    is_prof=None
                 PublicReply.objects.create(
                     reply_text = reply,
                     question  = question,
                     time=time,
+                    if_prof=is_prof,
                 )
             return redirect("publicquestion",slug=question.slug)
         except:
             return redirect("home")
-
-def search(request):
-    user_list = User.objects.all()
-    user_filter = UserFilter(request.GET, queryset=user_list)
-    return render(request, 'search/user_list.html', {'filter': user_filter})

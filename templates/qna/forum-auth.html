@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+{% endif %}
 
 <br>
   <form method="POST" action="{% url 'forum-auth'%}">
@@ -15,18 +21,4 @@
     <input type="hidden" name="next" value="">
  </form> 
 
-
- 
-{% comment %} <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table> {% endcomment %}
 {% endblock %}
