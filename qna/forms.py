@@ -3,7 +3,7 @@ from django.conf import settings
 import datetime
 
 class QuestionSubmission(forms.Form):
-    text = forms.CharField(max_length=240,label =False, required=True,widget=forms.Textarea(attrs={
+    text = forms.CharField(max_length=500,label =False, required=True,widget=forms.Textarea(attrs={
         'class':"form-control",
         'type':"text",
         'id':"question", 
@@ -16,7 +16,7 @@ class QuestionSubmission(forms.Form):
 
 
 class ReplySubmission(forms.Form):
-    text = forms.CharField(max_length=240,label = False , required=True,widget=forms.Textarea(attrs={
+    text = forms.CharField(max_length=500,label = False , required=True,widget=forms.Textarea(attrs={
         'class':"form-control",
         'type':"text",
         'id':"reply", 
