@@ -2,25 +2,17 @@
 {% block content %}
 
 
-{% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-success" role="alert">
-                {{message}}
-            </div>
-            
-        {% endfor %}
-{% endif %}
-{{forumid}}
 <br>
   <form method="POST" action="{% url 'forum-auth'%}">
      {% csrf_token %}
     <label>Forum Id:</label>
     <input type="text" name="username" autofocus="" required="" id="id_username">
+    <br>
     <label>Forum Code:</label>
     <input type="password" name="password" required="" id="id_password" >
+    <br>
     <input type="submit" value="login" class="btn btn-grey" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">
     <input type="hidden" name="next" value="">
-
  </form> 
 
 

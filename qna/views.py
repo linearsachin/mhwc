@@ -8,6 +8,8 @@ from .models import (
     PublicQuestion,
     PublicReply,
 )
+import os  
+import smtplib
 import csv
 import django.utils.timezone as tz
 from .filters import QuestionFilter,PublicQuestionFilter
@@ -19,7 +21,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from .forms import QuestionSubmission,ReplySubmission
 # Create your views here.
-def randomString(stringLength=10):
+def randomString(stringLength=15):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
 
@@ -44,15 +46,19 @@ class ForumAuthView(View):
             return redirect('forum-auth',forum_id)
 
 def generateForum(request):
-    forumId = randomString(10)
-    forumCode = random.randint(100000,999999)
-    User.objects.create_user(
-        username = forumId,
-        password  =forumCode,
-    )
-    messages.success(request, f"Your forum Id is: {forumId}")
-    messages.success(request, f"Remeber This Code for further login: {forumCode}")
-    return redirect("forum-auth")
+    if not request.user.is_authenticated:
+        forumId = randomString(10)
+        forumCode = str(random.randint(100000,9999999)) + randomString(3)
+        User.objects.create_user(
+            username = forumId,
+            password  =forumCode,
+        )
+        messages.success(request, f"Your forum Id is: {forumId}")
+        messages.success(request, f"Remeber This Code for further login: {forumCode}")
+        return redirect("forum-auth")
+    else:
+        messages.warning(request,'You are already in a forum')
+        return redirect('home')
 
 
 class ForumView(View):
@@ -132,11 +138,40 @@ class HomeView(View):
                     slug = slug_,
                     time= time,
                 )
+                send_mail(slug_)
             return redirect("publicquestion",slug=slug_)
         except:
             return redirect("home")
-       
-        
+
+
+def send_mail(question_slug):     
+    gmail_user = 'sachineg39@gmail.com'
+    gmail_password = os.environ['gmail_pw']
+
+    sent_from = gmail_user
+    to = ['sachineg39@gmail.com',]
+    url = 'https://peer-space.herokuapp.com/public-question/{question}'.format(question=question_slug)
+    subject = 'Message Added to Public Forum'
+    body = "A Question was added to the forum.\nHelp them by visiting:\n{URL}\nThank You.".format(URL = url)
+    email_text = """\
+From: %ss
+To: %s
+Subject: %s
+
+%s
+""" % (sent_from, ", ".join(to), subject, body)
+
+    try:
+        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        server.ehlo()
+        server.login(gmail_user, gmail_password)
+        server.sendmail(sent_from, to, email_text)
+        server.close()
+    except:
+        print( 'Something went wrong...')
+
+
+
 class AboutView(View):
     def get(self, request, *args, **kwargs):
         return render(request,'qna/about.html')
