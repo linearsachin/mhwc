@@ -34,8 +34,8 @@
         {% for question  in questions.qs %}
         <fieldset class="border border-dark">
             <div class="card-body text-left" style="overflow: hidden;padding:0em">
-                <div class="text-muted" ><small><b>{% if question.get_time_diff < 1 %}now {% elif question.get_time_diff < 2 %}{{uestion.get_time_diff}} hour ago {% else %}{{question.get_time_diff}} hours ago{% endif %} <b></small></div>
-                    <p  class="wrap text-light" ><b>{{question.question_text}}</b><p>
+                <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
+                    <p  class="wrap text-light" style="padding:3%;"><b>{{question.question_text}}</b><p>
                 <div style="float: center;margin: 0.5em 1em;" class="h6" >
                     <a href="{% url 'question' slug=question.slug  %}" style="margin-left: 2em;" class="link">Reply or View Replies</a>
                 </div>
