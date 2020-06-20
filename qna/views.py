@@ -154,7 +154,7 @@ def send_mail(question_slug):
         for row in csv_reader:
             to = row
     url = 'https://peer-space.herokuapp.com/public-question/{question}'.format(question=question_slug)
-    subject = 'Message Added to Public Forum'
+    subject = 'Question Added to Public Forum'
     body = "A Question was added to the forum.\nHelp them by visiting:\n{URL}\nThank You.".format(URL = url)
     email_text = """\
 From: %ss
