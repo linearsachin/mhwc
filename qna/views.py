@@ -127,21 +127,21 @@ class HomeView(View):
         return render(request ,'qna/home.html',context)
     def post(self,request):
         form = QuestionSubmission(self.request.POST or None)
-        # try:
-        if form.is_valid():
-            ques = form.cleaned_data.get('text')
-            trun = random.randint(20, 30)
-            slug_= slugify(ques[:trun]+""+randomString(3))
-            time = tz.now()
-            PublicQuestion.objects.create(
-                question_text = ques,
-                slug = slug_,
-                time= time,
-            )
-            send_mail(slug_)
-        return redirect("publicquestion",slug=slug_)
-        # except:
-        #     return redirect("home")
+        try:
+            if form.is_valid():
+                ques = form.cleaned_data.get('text')
+                trun = random.randint(20, 30)
+                slug_= slugify(ques[:trun]+""+randomString(3))
+                time = tz.now()
+                PublicQuestion.objects.create(
+                    question_text = ques,
+                    slug = slug_,
+                    time= time,
+                )
+                send_mail(slug_)
+            return redirect("publicquestion",slug=slug_)
+        except:
+            return redirect("home")
 
 
 def send_mail(question_slug):     
