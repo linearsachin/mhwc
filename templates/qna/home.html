@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 <style >
-
+.buttonsInput{
+        color:whitesmoke;
+        text-align-last:left;
+        padding:0.2em;
+        padding-left:2em;
+        padding-right:2em;
+    }
  </style>
 
 <div>
@@ -20,7 +26,7 @@
     <form method="POST" >
         {% csrf_token %}
         {{qForm}}
-        <input  class="btn btn-grey" type="submit" name="reply"  id="myBtn"style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">  </input>
+        <input  class="btn btn-grey buttonsInput" type="submit" name="reply"  id="myBtn">  </input>
     </form>
 </div>
 <br>
@@ -28,13 +34,13 @@
   <summary style=" outline: none;">Open Options</summary>
   <p><form class="" method="get" action="" >
     {{ questions.form}}
-    <button class="btn btn-grey" type="submit" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em"> Search </button>
+    <button class="btn btn-grey buttonsInput" type="submit" > Search </button>
     </form>
     {% if  not request.user.is_authenticated %}
-        {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey" style="font-color:white;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Click to generate a forum</a> {% endcomment %}
+        {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey buttonsInput" >Click to generate a forum</a> {% endcomment %}
 
     {% else %}
-        <a href="{% url 'forum'  %}" class="btn btn-grey" style="color:white;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">Go To Your Forum</a>
+        <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" >Go To Your Forum</a>
         </p>
     {% endif %}
 </details>

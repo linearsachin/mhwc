@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<style >
+.buttonsInput{
+        color:whitesmoke;
+        text-align-last:left;
+        padding:0.2em;
+        padding-left:2em;
+        padding-right:2em;
+    }
+ </style>
 {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}" role="alert">
@@ -17,7 +26,7 @@
     <label>Forum Code:</label>
     <input type="password" name="password" required="" id="id_password" >
     <br>
-    <input type="submit" value="login" class="btn btn-grey" style="color:whitesmoke;text-align-last:left;padding:0.2em;padding-left:2em;padding-right:2em">
+    <input type="submit" value="login" class="btn btn-grey buttonsInput" >
     <input type="hidden" name="next" value="">
  </form> 
 
