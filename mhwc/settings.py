@@ -58,6 +58,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_SSL_REDIRECT =True
+
 ROOT_URLCONF = 'mhwc.urls'
 
 TEMPLATES = [

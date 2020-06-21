@@ -8,6 +8,19 @@
         padding-left:2em;
         padding-right:2em;
     }
+.comment_body {
+        display: inline-block;
+        vertical-align: middle;
+
+        width: calc(100% - 75px);
+        min-height: 65px;
+        margin-left: 10px;
+        padding: 5px 10px;
+        font-size: .9rem;
+        color: #555;
+        background-color: $WHITE;
+        border-bottom: 2px solid lighten($GREY, 15%);
+    }
  </style>
 
 <div>
@@ -48,11 +61,11 @@
 
     <div class="container-fluid" style="margin: 0.5%;padding: 5%;">
         {% for question  in questions.qs %}
-        <fieldset class="border border-dark">
+        <fieldset class="border border-0">
             <div class="card-body text-left" style="overflow: hidden;padding:0em">
                 <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
-                    <p  class="text-light" style="padding:3%;">{{question.question_text}}</p>
-                <div style="float: center;margin: 0.5em 1em;" class="h6" >
+                    <p  class="text-light" style="padding:1em;margin:0">{{question.question_text}}</p>
+                <div style="float: center;" class="h6" >
                     <a href="{% url 'publicquestion' slug=question.slug  %}" style="margin-left: 2em;" class="link">Reply or View Replies</a>
                 </div>
             </div>
