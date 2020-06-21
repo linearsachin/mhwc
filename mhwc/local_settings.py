@@ -45,7 +45,6 @@ MIDDLEWARE = [
 
 # SECURE_BROWSER_XSS_FILTER = True
 
-
 ROOT_URLCONF = 'mhwc.urls'
 
 TEMPLATES = [
