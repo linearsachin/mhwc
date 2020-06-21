@@ -222,15 +222,18 @@ class QuestionView(View):
 
 class PublicQuestionView(View):
     def get(self, request,slug, *args, **kwargs):
-        question = PublicQuestion.objects.get(slug = slug)
-        replies = PublicReply.objects.filter(question=question).order_by('-time')
-        rForm = ReplySubmission()
-        context = {
-            'question':question,
-            'replies': replies,
-            'rForm':rForm,
-        }
-        return render(request ,'qna/question.html',context)
+        try:
+            question = PublicQuestion.objects.get(slug = slug)
+            replies = PublicReply.objects.filter(question=question).order_by('-time')
+            rForm = ReplySubmission()
+            context = {
+                'question':question,
+                'replies': replies,
+                'rForm':rForm,
+            }
+            return render(request ,'qna/question.html',context)
+        except:
+            return redirect('home')
        
 
     def post(self, request, *args, **kwargs):

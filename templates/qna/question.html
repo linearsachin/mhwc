@@ -60,7 +60,7 @@ button1:hover{
                     {% for  reply in replies %}
                      <fieldset class="border border-dark">
                         <div class="card-body " style="float:center;padding:0em 1em">
-                            <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
+                            <div class="text-muted" ><small><b>{{reply.get_time_diff}}</b></small></div>
                             {% if reply.if_prof %}
                                 <label >{{reply.if_prof}}</label>
                             {% endif %}
