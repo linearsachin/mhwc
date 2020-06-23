@@ -229,7 +229,7 @@ class QuestionView(View):
 class PublicQuestionView(View):
     def get(self, request,slug, *args, **kwargs):
         try:
-            question = PublicQuestion.objects.get(slug = slug)
+            question = PublicQuestion.objects.get(slug = slug,is_approved=True)
             replies = PublicReply.objects.filter(question=question).order_by('-time')
             rForm = ReplySubmission()
             context = {
