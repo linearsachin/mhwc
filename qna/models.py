@@ -31,6 +31,8 @@ class PublicQuestion(models.Model):
     question_text = models.TextField()
     slug = models.SlugField(max_length=50)
     time = models.DateTimeField()
+    is_approved = models.BooleanField(default=False)
+
     def __str__(self):
         return str(self.question_text)[:20]+"..."
     def get_time_diff(self):
@@ -56,6 +58,7 @@ class Reply(models.Model):
     question = models.ForeignKey(Question,on_delete=models.CASCADE,blank=True, null=True)
     reply_text = models.TextField()
     time = models.DateTimeField()
+
     def __str__(self):
         return str(self.reply_text)[:20]+"..."
     def get_time_diff(self):
@@ -101,3 +104,14 @@ class PublicReply(models.Model):
                 return "{days} days ago".format(days=round(hours/24))
             else:
                 return ""
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=200)
+    text = models.TextField(blank=True, null=True)
+    url = models.URLField(blank=True, null=True)
+    is_og_blog = models.BooleanField(default=False)
+    author = models.CharField(max_length=100, blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.title)

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-
+import qna.views as temps
 urlpatterns = [
      path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('pokemon-catchemall/', admin.site.urls),
@@ -23,3 +23,6 @@ urlpatterns = [
     # path('accounts/', include('django.contrib.auth.urls'))
     
 ]
+
+handler404 = temps.handler404
+handler500 = temps.handler500

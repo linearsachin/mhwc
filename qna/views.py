@@ -141,26 +141,32 @@ class HomeView(View):
                     slug = slug_,
                     time= time,
                 )
-                send_mail(slug_)
+                send_mail('email_mods.csv',[slug_],True)
             return redirect("publicquestion",slug=slug_)
         except:
             return redirect("home")
 
 
-def send_mail(question_slug):     
+def send_mail(filename,question_slugs,is_to_mod=True):     
     gmail_user = os.environ['gmail_id']
     gmail_password = os.environ['gmail_pw']
 
     sent_from = gmail_user
-    with open('email.csv',encoding='UTF-8') as csv_file:
+    with open(filename,encoding='UTF-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            to = row
-    url = 'https://peer-space.herokuapp.com/public-question/{question}'.format(question=question_slug)
-    subject = 'Question Added to Public Forum'
-    body = "A Question was added to the forum.\nHelp them by visiting:\n{URL}\nThank You.".format(URL = url)
+            to = ['sachineg39@gmail.com']
+    url=[]
+    for slug in question_slugs:
+        url.append('https://peer-space.herokuapp.com/public-question/{question}'.format(question=slug))
+    subject = 'Question(s) Added to Public Forum'
+    if is_to_mod:
+        body = "A Question was added to the forum.\nPlease Approve it ASAP:\n{URL}\nThank You.".format(URL = url)
+    else:
+        body = "A Question was added to the forum.\nHelp them by visiting:\n{URL}\nThank You.".format(URL = url)
+
     email_text = """\
-From: %ss
+From: %s
 To: %s
 Subject: %s
 
@@ -257,3 +263,10 @@ class PublicQuestionView(View):
             return redirect("publicquestion",slug=question.slug)
         except:
             return redirect("home")
+
+
+
+def handler404(request,exception=404):
+    return render(request, 'qna/404.html', status=404)
+def handler500(request,exception=404):
+    return render(request, 'qna/500.html', status=500)
