@@ -4,7 +4,8 @@ from .models import (
     Reply,
     PublicQuestion,
     PublicReply,
-    Blog
+    BlogLink,
+    Blog,
 )
 from .views import send_mail
 # Register your models here.
@@ -19,11 +20,27 @@ class QuestionsAdmin(admin.ModelAdmin):
             slugs.append(question.slug)
         send_mail('email.csv',slugs,False)
 
+class BlogsAdmin(admin.ModelAdmin):
+    list_display = ('title','author','date')
+    list_filter = ['title','date']
+    actions = ['add_to_bloglinks', ]
+    def add_to_bloglinks(self,request,queryset):
+        for blog in queryset:
+            BlogLink.objects.create(
+                title = blog.title,
+                short_desc = blog.text[:200],
+                url = "http://127.0.0.1:8000/blog/"+blog.slug,
+                author = blog.author,
+                website_name = "PeerSpace",
+                time = blog.date,
+            )
+
 
 
 admin.site.register(Question)
 admin.site.register(Reply)
 admin.site.register(PublicQuestion,QuestionsAdmin)
 admin.site.register(PublicReply)
-admin.site.register(Blog)
+admin.site.register(BlogLink)
+admin.site.register(Blog,BlogsAdmin)
 

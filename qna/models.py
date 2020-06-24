@@ -1,6 +1,7 @@
 from django.db import models
 import django.utils.timezone as tz
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 class Question(models.Model):
     forum = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
@@ -106,12 +107,32 @@ class PublicReply(models.Model):
                 return ""
 
 
-class Blog(models.Model):
+class BlogLink(models.Model):
     title = models.CharField(max_length=200)
-    text = models.TextField(blank=True, null=True)
-    url = models.URLField(blank=True, null=True)
-    is_og_blog = models.BooleanField(default=False)
+    short_desc = models.TextField()
+    url = models.URLField()
     author = models.CharField(max_length=100, blank=True, null=True)
-    
+    website_name = models.CharField(max_length=200)
+    time = models.DateTimeField()
+
     def __str__(self):
         return str(self.title)
+    def get_date(self):
+        return "{month} {day}, {year}".format(month=self.time.strftime('%B'),day=self.time.day,year=self.time.year)
+
+class Blog(models.Model):
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    author = models.CharField(max_length=100,)
+    date = models.DateTimeField()
+    slug=models.SlugField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return str(self.title)
+    def get_date(self):
+        return "{month} {day}, {year}".format(month=self.date.strftime('%B'),day=self.date.day,year=self.date.year)

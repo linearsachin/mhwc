@@ -7,8 +7,12 @@ from .models import (
     Reply,
     PublicQuestion,
     PublicReply,
+    Blog,
+    BlogLink,
 )
 import os  
+from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
+
 import smtplib
 import csv
 import django.utils.timezone as tz
@@ -47,6 +51,8 @@ class ForumAuthView(View):
             messages.warning(request,f'Wrong Forum Code for {forum_id}')
             return redirect('forum-auth',forum_id)
 
+
+
 def generateForum(request):
     if not request.user.is_authenticated:
         forumId = randomString(10)
@@ -61,6 +67,7 @@ def generateForum(request):
     else:
         messages.warning(request,'You are already in a forum')
         return redirect('home')
+
 
 
 class ForumView(View):
@@ -102,6 +109,7 @@ class ForumView(View):
         except:
             return redirect("home")
 
+
 def get_qoute():
     with open('qoutes.csv',encoding='UTF-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -112,14 +120,23 @@ def get_qoute():
         
 class HomeView(View):
     def get(self, request):
-        questions = PublicQuestion.objects.all().order_by('-time')
+        questions = PublicQuestion.objects.filter(is_approved=True).order_by('-time')
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)
+        # page = request.GET.get('page', 1)
+        # paginator = Paginator(question_filter, 25)
         qForm = QuestionSubmission()
         qoute = get_qoute()
         if request.user.is_authenticated:
             forumid = request.user.username
         else:
             forumid=''
+
+        # try:
+        #     questions_ = paginator.page(page)
+        # except PageNotAnInteger:
+        #     questions_ = paginator.page(1)
+        # except EmptyPage:
+        #     questions_ = paginator.page(paginator.num_pages)
         context = {
             'questions':question_filter,
             'qForm':qForm,
@@ -142,8 +159,10 @@ class HomeView(View):
                     time= time,
                 )
                 send_mail('email_mods.csv',[slug_],True)
-            return redirect("publicquestion",slug=slug_)
-        except:
+            url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)
+            messages.success(request,"Your question has been submitted for review, It will be approved ASAP\ncheck back at {url}".format(url=url))
+            return redirect("home")
+        except:            
             return redirect("home")
 
 
@@ -260,9 +279,30 @@ class PublicQuestionView(View):
                     time=time,
                     if_prof=is_prof,
                 )
-            return redirect("publicquestion",slug=question.slug)
+            return redirect("publicquestions",slug=question.slug)
         except:
             return redirect("home")
+
+
+
+class BlogLinksView(ListView):
+    model = BlogLink
+    paginate_by = 2
+    template_name = 'qna/blog_list.html'
+    ordering = ['-time']
+
+
+class BlogView(View):
+    def get(self, request,blog_slug, *args, **kwargs):
+        blog = Blog.objects.get(slug=blog_slug)
+        recent_blog = Blog.objects.exclude(slug=blog_slug).order_by('-date')[:3]
+        print(recent_blog)
+        context={
+            'blog':blog,
+            'recent':recent_blog
+        }
+        return render(request,'qna/blog.html',context)
+
 
 
 

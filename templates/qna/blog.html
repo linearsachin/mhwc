@@ -1,7 +1,49 @@
 {% extends 'base.html'%}
-
+{% load static %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/style3.css' %}" >
+  <link href="https://fonts.googleapis.com/css2?family=Jost&family=NTR&display=swap" rel="stylesheet">
+{% endblock extra_head %}
 {% block content %}
-    <h1>BLOG PAGE</h1>
 
+        <div style="text-align-last: left;width: 90%; margin: 0 auto;">
+                       <div class="old-div">
+                <p>
+                    <span class="span-style">
+                        <time class="time-style">
+                            {{blog.get_date}}
+                        </time>
+                    </span> 
+                    <span class="author-name">
+                        {{blog.author}}
+
+                </p> 
+                <h2 >
+                    <a class="header" href="{{blog.url}}">
+                    {{blog.title}}
+                    </a>
+                </h2>
+                <p class="reader">
+                    {{blog.text}}
+                </p>
+
+            </div> 
+
+            <hr class="dash-style">
+
+            <div class="new-div">
+                <h3 class="new-heading">Recent Blog</h3>
+                    <hr class="new-line">
+                    {% for rblogs in recent  %}
+                    <span class="new-span"> 
+                        <a  class="new-a" href="{{rblogs.url}}">{{rblogs.title}}</a>
+                    </span> 
+                    <hr class="new-line">
+                    {% endfor %}
+            </div>
+            
+            
+            <!-- .entry-preview-wrapper .clearfix -->
+        </div><!-- .entry-preview
 
 {% endblock content %}
