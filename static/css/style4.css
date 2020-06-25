@@ -9,12 +9,19 @@
     margin:2%;
     
 }
+#coolcomment{
+    padding: 5%;
+    margin: 0.5%;
+}
 @media only screen and (max-device-width: 800px) {
     .image-style-carousel{
         position: relative;
         padding: 0% 0%;
-        margin:0;
-        
+        margin:0;   
+    }
+    #coolcomment{
+        padding: 0%;
+        margin: 0.5%;
     }
 
 }
