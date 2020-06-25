@@ -94,14 +94,12 @@
   </div>
 
 </section>
-<hr>
-
-    <br>
-    <form method="POST" >
-        {% csrf_token %}
-        {{qForm}}
-        <input  class="btn btn-grey buttonsInput" type="submit" name="reply"  id="myBtn">  </input>
-    </form>
+<hr><br>
+<form method="POST" >
+    {% csrf_token %}
+    {{qForm}}
+    <input  class="btn btn-grey buttonsInput" type="submit" name="reply"  id="myBtn">  </input>
+</form>
 </div>
 <br>
 <details class="btn btn-outline-dark" >
