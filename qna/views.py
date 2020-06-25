@@ -78,7 +78,6 @@ class ForumView(View):
             question_filter = QuestionFilter(request.GET, queryset=questions)
             qForm = QuestionSubmission()
             qoute = get_qoute()
-            print(qoute)
             context = {
                 'questions':question_filter,
                 'qForm':qForm,
@@ -296,7 +295,6 @@ class BlogView(View):
     def get(self, request,blog_slug, *args, **kwargs):
         blog = Blog.objects.get(slug=blog_slug)
         recent_blog = Blog.objects.exclude(slug=blog_slug).order_by('-date')[:3]
-        print(recent_blog)
         context={
             'blog':blog,
             'recent':recent_blog
