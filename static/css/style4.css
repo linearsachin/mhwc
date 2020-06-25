@@ -1,0 +1,20 @@
+#testimonials {
+    background-color:#cedbdb ;
+}
+
+
+.image-style-carousel{
+    position: relative;
+    padding: 0% 20%;
+    margin:2%;
+    
+}
+@media only screen and (max-device-width: 800px) {
+    .image-style-carousel{
+        position: relative;
+        padding: 0% 0%;
+        margin:0;
+        
+    }
+
+}
