@@ -29,8 +29,8 @@ button1:hover{
 
 </style>
 
-<div class="container-fluid">
-    <div class="container-fluid" style="margin: 0.25rem;padding: 0.2em;">
+<div class="">
+    <div class="container-fluid"  id="coolcomment" >
         <fieldset class="border ">
                 <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
 
@@ -55,7 +55,7 @@ button1:hover{
         </fieldset>
         
                 {% if replies %}
-                <div style="">
+                <div id="coolcomment">
                     <label for="innerpara"><h3>Replies</h3></label>
                     {% for  reply in replies %}
                      <fieldset class="border">
@@ -69,7 +69,7 @@ button1:hover{
                             <p>
                         </div>
                     </fieldset>
-                    <br>
+                    <span style=" display: block; margin-bottom: 0.3em; "></span>
                     {% endfor %}
                     {% endif %}
                 </div> 

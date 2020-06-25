@@ -121,7 +121,7 @@
 
     <hr>
     <div class="container-fluid " id="coolcomment">
-        {% for question  in questions.qs %}<br>
+        {% for question  in questions.qs %}
         <fieldset class="border border-0" >
             <div class="card-body text-left" style="overflow: hidden;padding:0em">
                 <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
@@ -130,7 +130,7 @@
                     <a href="{% url 'publicquestion' slug=question.slug  %}" style="margin-left: 2em;" class="link">Reply or View Replies</a>
                 </div>
             </div> 
-        </fieldset>
+        </fieldset><span style=" display: block; margin-bottom: 0.3em; "></span>
         {% endfor %}
     {% if is_paginated  %}
 
