@@ -278,7 +278,7 @@ class PublicQuestionView(View):
                     time=time,
                     if_prof=is_prof,
                 )
-            return redirect("publicquestions",slug=question.slug)
+            return redirect("publicquestion",slug=question.slug)
         except:
             return redirect("home")
 

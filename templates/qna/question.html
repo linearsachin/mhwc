@@ -31,7 +31,7 @@ button1:hover{
 
 <div class="container-fluid">
     <div class="container-fluid" style="margin: 0.25rem;padding: 0.2em;">
-        <fieldset class="border border-dark">
+        <fieldset class="border ">
                 <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
 
             <p id="innerPara" class="text-light"><b>{{question.question_text}}</b><p>
@@ -58,7 +58,7 @@ button1:hover{
                 <div style="">
                     <label for="innerpara"><h3>Replies</h3></label>
                     {% for  reply in replies %}
-                     <fieldset class="border border-dark">
+                     <fieldset class="border">
                         <div class="card-body " style="float:center;padding:0em 1em">
                             <div class="text-muted" ><small><b>{{reply.get_time_diff}}</b></small></div>
                             {% if reply.if_prof %}
