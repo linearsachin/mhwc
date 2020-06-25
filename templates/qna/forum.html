@@ -42,9 +42,9 @@
         <fieldset class="border border-0">
             <div class="card-body text-left" style="overflow: hidden;padding:0em">
                 <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
-                    <p  class="text-light" style="padding:3%;"><b>{{question.question_text}}</b><p>
-                <div style="float: center;margin: 0.5em 1em;" class="h6" >
-                    <a href="{% url 'question' slug=question.slug  %}" style="margin-left: 2em;" class="link">Reply or View Replies</a>
+                    <p  class="text-light" style="padding:3%;margin:0"><b>{{question.question_text}}</b><p>
+                <div style="float: center;margin: 0.5em 0.5em;" class="h6" >
+                    <a href="{% url 'question' slug=question.slug  %}"  class="link">Reply or View Replies</a>
                 </div>
             </div>        
         </fieldset>
