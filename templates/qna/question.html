@@ -62,7 +62,9 @@ button1:hover{
                         <div class="card-body " style="float:center;padding:0em 1em">
                             <div class="text-muted" ><small><b>{{reply.get_time_diff}}</b></small></div>
                             {% if reply.if_prof %}
-                                <label >{{reply.if_prof}}</label>
+                            <span class="span-style" style="color: white;font-family: 'NTR', sans-serif;background-color: #4dD191;color:#444444;">
+                                <label style="padding:10px">Professional</label>
+                            </span>
                             {% endif %}
                             <p class"text-light"  style="color:white">
                             {{reply.reply_text}}

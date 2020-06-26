@@ -5,13 +5,33 @@
 
 .image-style-carousel{
     position: relative;
-    padding: 0% 20%;
+    padding: 0% 30%;
     margin:2%;
     
 }
 #coolcomment{
     padding: 5%;
     margin: 0.5%;
+}
+.buttonsInput{
+    color:whitesmoke;
+    text-align-last:left;
+    padding:0.2em;
+    padding-left:2em;
+    padding-right:2em;
+}
+.comment_body {
+    display: inline-block;
+    vertical-align: middle;
+
+    width: calc(100% - 75px);
+    min-height: 65px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: .9rem;
+    color: #555;
+    background-color: $WHITE;
+    border-bottom: 2px solid lighten($GREY, 15%);
 }
 @media only screen and (max-device-width: 800px) {
     .image-style-carousel{
