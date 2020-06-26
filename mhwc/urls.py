@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path,include
 import qna.views as temps
 urlpatterns = [
-     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('pokemon-catchemall/', admin.site.urls),
     path('', include('qna.urls')),
+    path('traffic/', include('traffic_monitor.urls')),
+
     # path('accounts/', include('django.contrib.auth.urls'))
     
 ]

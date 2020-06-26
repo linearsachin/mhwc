@@ -28,9 +28,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'qna',
-    'admin_honeypot'
+    'admin_honeypot',
+    'django_crontab',
+    'traffic_monitor',
 
 ]
+
+TRAFFIC_MONITOR_INTERFACE_NAMES = 'eth0'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,6 +117,14 @@ USE_L10N = True
 USE_TZ = True
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com',
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ['gmail_id']
+EMAIL_HOST_PASSWORD = os.environ['gmail_pw']
+DEFAULT_FROM_EMAIL = os.environ['gmail_id']
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -123,3 +136,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOGIN_REDIRECT_URL='home'
 LOGOUT_REDIRECT_URL='home'
 
+CRONJOBS = [
+    ('*/5 * * * *', 'traffic_monitor.tools.read_bytes', '>> /var/log/cronjob.log'),
+]
