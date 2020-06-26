@@ -290,7 +290,7 @@ class PublicQuestionView(View):
 
 class BlogLinksView(ListView):
     model = BlogLink
-    paginate_by = 2
+    paginate_by = 5
     template_name = 'qna/blog_list.html'
     ordering = ['-time']
 
