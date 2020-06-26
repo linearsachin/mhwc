@@ -206,6 +206,10 @@ class AboutView(View):
     def get(self, request, *args, **kwargs):
         return render(request,'qna/about.html')
 
+class ContactView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request,'qna/contactus.html')
+
 
 
 class QuestionView(View):

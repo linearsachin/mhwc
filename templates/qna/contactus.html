@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_head %}
+<style>
+
+    #kikstartz{
+        width:15%
+    }
+@media only screen and (max-device-width: 800px) {
+    #kikstartz{
+        width:50%
+    }
+}
+
+</style>
+{% endblock extra_head %}
+{% block content %}
+    <fieldset class="border border" style="width:90%;margin-left:5%;margin-right:5%;padding:5%">
+      <div class="row-cols-lg-1 row-cols-md-1 row-cols-sm-1" style="float:center;padding:2%">
+          <p style="color:white;margin:1em">
+            <img src="{% static 'img/logo.png' %}">
+            <b><br><a href="mailto:peerspaceofficial@gmail.com" style="color:whitesmoke;">peerspaceofficial@gmail.com</a></b>
+          </p>
+          <br>
+          <p style="color:white;margin:1em">For Professional help contact:<br>
+            <img src="{% static 'img/kikstartzlogo.png' %}" id="kikstartz" >
+            <b><br><a href="mailto:peerspaceofficial@gmail.com" style="color:whitesmoke;">kikstartz@gmail.com</a><br>
+            visit: <a href="http://kikstartz.com/" style="color:whitesmoke;">kikstartz</a>
+            </b>
+          </p>
+      </div>
+    </fieldset>
+{% endblock content %}
