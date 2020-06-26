@@ -173,7 +173,7 @@ def send_mail(filename,question_slugs,is_to_mod=True):
     with open(filename,encoding='UTF-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            to = ['sachineg39@gmail.com']
+            to = row
     url=[]
     for slug in question_slugs:
         url.append('https://peer-space.herokuapp.com/public-question/{question}'.format(question=slug))

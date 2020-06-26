@@ -32,7 +32,7 @@ button1:hover{
 <div class="">
     <div class="container-fluid"  id="coolcomment" >
         <fieldset class="border ">
-                <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
+            <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
 
             <p id="innerPara" class="text-light"><b>{{question.question_text}}</b><p>
             <div class="container-fluid">
@@ -75,9 +75,9 @@ button1:hover{
                     {% endfor %}
                     {% endif %}
                 </div> 
-        
     <div>
 </div>
+</div></div>
 
 <script>
     document.getElementById("checkreply").onclick = function() {replyOpen()};
@@ -88,12 +88,10 @@ button1:hover{
         if (document.getElementById('replyID').style.display == 'inherit'){
             document.getElementById('replyID').style.display = 'none'
             document.getElementById('replybtn').style.display = 'initial'
-
         }
         else{
             document.getElementById('replyID').style.display = 'inherit'
             document.getElementById('replybtn').style.display = 'none'
-
         }
     }
 </script>

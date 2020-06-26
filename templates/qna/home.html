@@ -8,46 +8,36 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+      .buttonsInput{
+          color:whitesmoke;
+          text-align-last:left;
+          padding:0.2em;
+          padding-left:2em;
+          padding-right:2em;
+      }
+    </style>
 {% endblock extra_head %}
 {% block content %}
-<style >
-.buttonsInput{
-        color:whitesmoke;
-        text-align-last:left;
-        padding:0.2em;
-        padding-left:2em;
-        padding-right:2em;
-    }
-.comment_body {
-        display: inline-block;
-        vertical-align: middle;
-
-        width: calc(100% - 75px);
-        min-height: 65px;
-        margin-left: 10px;
-        padding: 5px 10px;
-        font-size: .9rem;
-        color: #555;
-        background-color: $WHITE;
-        border-bottom: 2px solid lighten($GREY, 15%);
-    }
- </style>
 
 <div>
 {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" role="alert">
-                {{message}}
-            </div>
-        {% endfor %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}" role="alert">
+      {{message}}
+    </div>
+  {% endfor %}
 {% endif %}
+</div>
 <div>
   <label>supported by <a href="http://kikstartz.com/" style="color:#4ca190"><b>Kikstartz Rehabilitation LLP</b></a></label>
 </div>
 <hr>
 <div class="w3-panel w3-leftbar"> 
- <p><i class="fa fa-quote-right w3-xxlarge"></i><br>
-        <i>{{qoute}}</i></p>
+  <p>
+    <i class="fa fa-quote-right w3-xxlarge"></i><br>
+    <i>{{qoute}}</i>
+  </p>
 </div>
 <hr>
 <section id="testimonials" >
@@ -104,38 +94,37 @@
     {{qForm}}
     <input  class="btn btn-grey buttonsInput" type="submit" name="reply"  id="myBtn">  </input>
 </form>
-</div>
 <br>
 <details class="btn btn-outline-dark" >
   <summary style=" outline: none;">Open Options</summary>
-  <p><form class="" method="get" action="" >
-    {{ questions.form}}
-    <button class="btn btn-grey buttonsInput" type="submit" > Search </button>
+  <p>
+    <form class="" method="get" action="" >
+      {{ questions.form}}
+      <button class="btn btn-grey buttonsInput" type="submit" > Search </button>
     </form>
-    {% if  not request.user.is_authenticated %}
-        {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey buttonsInput" >Click to generate a forum</a> {% endcomment %}
-
+    {% if  request.user.is_authenticated %}
+      <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" >Go To Your Forum</a>
     {% else %}
-        <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" >Go To Your Forum</a>
+      {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey buttonsInput" >Click to generate a forum</a> {% endcomment %}
     {% endif %}
-     </p>
+  </p>
 </details>
-
     <hr>
-    <div class="container-fluid " id="coolcomment">
-        {% for question  in questions.qs %}
-        <fieldset class="border border-0" >
-            <div class="card-body text-left" style="overflow: hidden;padding:0em">
-                <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
-                    <p  class="text-light" style="padding:1em;margin:0">{{question.question_text}}</p>
-                <div style="float: center;" class="h6" >
-                    <a href="{% url 'publicquestion' slug=question.slug  %}"  class="link">Reply or View Replies</a>
-                </div>
-            </div> 
-        </fieldset><span style=" display: block; margin-bottom: 0.3em; "></span>
-        {% endfor %}
-    <div>
-
+<div class="container-fluid " id="coolcomment">
+  {% for question  in questions.qs %}
+  <fieldset class="border border-0" >
+    <div class="card-body text-left" style="overflow: hidden;padding:0em">
+      <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
+      <p  class="text-light" style="padding:1em;margin:0">{{question.question_text}}</p>
+      <div style="float: center;" class="h6" >
+          <a href="{% url 'publicquestion' slug=question.slug  %}"  class="link">Reply or View Replies</a>
+      </div>
+    </div> 
+  </fieldset><span style=" display: block; margin-bottom: 0.3em; "></span>
+  {% endfor %}
+<div>
+</div>
+</div>
 <script>
     document.getElementById("checkreply").onclick = function() {replyOpen()};
     
