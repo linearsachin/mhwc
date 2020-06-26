@@ -1,6 +1,7 @@
+{% load static %}
 <head>  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"</script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -8,7 +9,7 @@
     <div class="container" >
       
           <a class="navbar-brand waves-effect" href="/">
-            <strong style="color :whitesmoke;">  <b><em>PeerSpace  </em></b></strong> </a>
+            <img src="{% static 'img/logo.png' %}" style="width:70%"> </a>
             {% comment %} <sub> <a href="http://kikstartz.com/" style="stext-decoration: none;color:black"><small>supported by Kikstartz</small></a></sub> {% endcomment %}
          
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,3 +44,4 @@
 
 
 </nav>
+<br>
