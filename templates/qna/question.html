@@ -2,7 +2,7 @@
 {% block content %}
 <style>
 
-button1{
+.button1{
  display:inline-block;
  padding:0.35em 1.2em;
  border:0.1em solid #FFFFFF;
@@ -16,12 +16,12 @@ button1{
  text-align:center;
  transition: all 0.2s;
 }
-button1:hover{
+.button1:hover{
  color:black;
  background-color:#FFFFFF;
 }
 @media all and (max-width:30em){
- button1{
+ .button1{
   display:block;
   margin:0.4em auto;
  }
@@ -36,7 +36,7 @@ button1:hover{
 
             <p id="innerPara" class="text-light"><b>{{question.question_text}}</b><p>
             <div class="container-fluid">
-                <button typ="button" id="replybtn" class="button1 btn btn-grey" onclick="replyOpen()" style="color:whitesmoke;">Reply</button><br>
+                <button typ="button" id="replybtn" class=" btn btn-grey" onclick="replyOpen()" style="color:whitesmoke;">Reply</button><br>
             </div>
                
                 <div class="container-fluid" style="width: 70%;display:none;" id="replyID" style="">

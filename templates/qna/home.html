@@ -42,7 +42,7 @@
 <hr>
 <section id="testimonials" >
 
-  <div id="testimonial-carousel" class="carousel slide border border-light" data-ride="carousel" data-interval="80000">
+  <div id="testimonial-carousel" class="carousel slide border border-light" data-ride="carousel" data-interval="100000">
     
     <ol class="carousel-indicators">
       <li data-target="#testimonial-carousel" data-slide-to="0" class="active"></li>
@@ -92,7 +92,7 @@
 <form method="POST" >
     {% csrf_token %}
     {{qForm}}
-    <input  class="btn btn-grey buttonsInput" type="submit" name="reply"  id="myBtn">  </input>
+    <input  class="btn btn-grey buttonsInput" type="submit" name="reply" style="color:whitesmoke" id="myBtn">  </input>
 </form>
 <br>
 <details class="btn btn-outline-dark" >
@@ -100,10 +100,10 @@
   <p>
     <form class="" method="get" action="" >
       {{ questions.form}}
-      <button class="btn btn-grey buttonsInput" type="submit" > Search </button>
+      <button class="btn btn-grey buttonsInput" type="submit" style="color:whitesmoke"> Search </button>
     </form>
     {% if  request.user.is_authenticated %}
-      <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" >Go To Your Forum</a>
+      <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" style="color:whitesmoke">Go To Your Forum</a>
     {% else %}
       {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey buttonsInput" >Click to generate a forum</a> {% endcomment %}
     {% endif %}

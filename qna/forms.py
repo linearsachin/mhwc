@@ -11,7 +11,7 @@ class QuestionSubmission(forms.Form):
         'placeholder':"Ask Anything" ,
         'rows':2,
         'cols':10,
-        'style':"width:70%; text-align-last: center;margin:auto; "
+        'style':"width:80%; text-align-last: center;margin:auto; "
     }))
 
 
@@ -24,6 +24,6 @@ class ReplySubmission(forms.Form):
         'placeholder':"Answer" ,
         'rows':2,
         'cols':10,
-        'style':"width:70%; text-align-last: center;margin:auto; "
+        'style':"width:80%; text-align-last: center;margin:auto; "
     }))
     hidden = forms.HiddenInput()
