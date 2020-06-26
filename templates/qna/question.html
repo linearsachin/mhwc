@@ -31,7 +31,7 @@
 
 <div class="">
     <div class="container-fluid"  id="coolcomment" >
-        <fieldset class="border ">
+        <fieldset class="border border-0">
             <div class="text-muted" ><small><b>{{question.get_time_diff}}</b></small></div>
 
             <p id="innerPara" class="text-light"><b>{{question.question_text}}</b><p>
@@ -58,7 +58,7 @@
                 <div id="coolcomment">
                     <label for="innerpara"><h3>Replies</h3></label>
                     {% for  reply in replies %}
-                     <fieldset class="border">
+                     <fieldset class="border border-0">
                         <div class="card-body " style="float:center;padding:0em 1em">
                             <div class="text-muted" ><small><b>{{reply.get_time_diff}}</b></small></div>
                             {% if reply.if_prof %}
