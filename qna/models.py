@@ -33,8 +33,7 @@ class PublicQuestion(models.Model):
     slug = models.SlugField(max_length=50)
     time = models.DateTimeField()
     is_approved = models.BooleanField(default=False)
-    # ip = models.GenericIPAddressField(blank=True, null=True)
-    # remo = models.CharField(max_length=20,blank=True, null=True)
+    ip = models.GenericIPAddressField(blank=True, null=True)
 
     def __str__(self):
         return str(self.question_text)[:20]+"..."

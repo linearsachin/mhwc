@@ -20,7 +20,7 @@ class QuestionSubmission(forms.Form):
         attrs={
             'data-theme': 'dark',
             'data-size': '',
-            'style':"width:80%;float:center; text-align-last: center;margin:auto; "
+            'style':"float:inherit;width:80%;margin:auto;"
         }))
 
 

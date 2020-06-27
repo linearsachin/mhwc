@@ -126,20 +126,13 @@ class HomeView(View):
     def get(self, request):
         questions = PublicQuestion.objects.filter(is_approved=True).order_by('-time')
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)
-        # page = request.GET.get('page', 1)
-        # paginator = Paginator(question_filter, 25)
         qForm = QuestionSubmission()
         qoute = get_qoute()
         if request.user.is_authenticated:
             forumid = request.user.username
         else:
             forumid=''
-        # try:
-        #     questions_ = paginator.page(page)
-        # except PageNotAnInteger:
-        #     questions_ = paginator.page(1)
-        # except EmptyPage:
-        #     questions_ = paginator.page(paginator.num_pages)
+
         context = {
             'questions':question_filter,
             'qForm':qForm,
@@ -157,10 +150,15 @@ class HomeView(View):
                 trun = random.randint(20, 30)
                 slug_= slugify(ques[:trun]+""+randomString(3))
                 time = tz.now()
+                try:
+                    ip=request.META.get('HTTP_X_FORWARDED_FOR')
+                except:
+                    ip=''
                 PublicQuestion.objects.create(
                     question_text = ques,
                     slug = slug_,
                     time= time,
+                    ip=ip
                 )
                 send_mail('email_mods.csv',[slug_],True)
             url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)
