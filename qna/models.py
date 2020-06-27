@@ -34,7 +34,7 @@ class PublicQuestion(models.Model):
     time = models.DateTimeField()
     is_approved = models.BooleanField(default=False)
     ip = models.GenericIPAddressField(blank=True, null=True)
-    remo = models.GenericIPAddressField(blank=True, null=True)
+    remo = models.CharField(blank=True, null=True)
 
     def __str__(self):
         return str(self.question_text)[:20]+"..."
