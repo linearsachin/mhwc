@@ -125,7 +125,7 @@ class HomeView(RatelimitMixin,View):
     ratelimit_key = 'ip'
     ratelimit_rate = '2/m'
     ratelimit_block = True
-    ratelimit_method = 'POST'
+    ratelimit_method = ['GET','POST']
     def get(self, request):
         questions = PublicQuestion.objects.filter(is_approved=True).order_by('-time')
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)
@@ -137,7 +137,7 @@ class HomeView(RatelimitMixin,View):
             forumid = request.user.username
         else:
             forumid=''
-
+        recaptcha = os.environ['recaptcha']
         # try:
         #     questions_ = paginator.page(page)
         # except PageNotAnInteger:
@@ -149,6 +149,7 @@ class HomeView(RatelimitMixin,View):
             'qForm':qForm,
             'qoute':qoute,
             'forumid':forumid,
+            'recaptcha':recaptcha
             
         }
         return render(request ,'qna/home.html',context)
