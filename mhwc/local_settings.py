@@ -29,8 +29,10 @@ INSTALLED_APPS = [
     'django_filters',
     'qna',
     'admin_honeypot',
+    'captcha'
 
 ]
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

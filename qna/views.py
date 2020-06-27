@@ -121,11 +121,8 @@ def get_qoute():
                 return row[0]
         return "“If we start being honest about our pain, our anger, and our shortcomings instead of pretending they don’t exist, then maybe we’ll leave the world a better place than we found it.” – Russell Wilson"
         
-class HomeView(RatelimitMixin,View):
-    ratelimit_key = 'ip'
-    ratelimit_rate = '2/m'
-    ratelimit_block = True
-    ratelimit_method = ['GET','POST']
+class HomeView(View):
+
     def get(self, request):
         questions = PublicQuestion.objects.filter(is_approved=True).order_by('-time')
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)

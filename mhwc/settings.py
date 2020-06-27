@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_filters',
     'qna',
     'admin_honeypot',
+    'captcha',
 ]
 
 
@@ -144,6 +145,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL='home'
 LOGOUT_REDIRECT_URL='home'
+
+RECAPTCHA_PUBLIC_KEY = os.environ['recaptcha_key']
+RECAPTCHA_PRIVATE_KEY = os.environ['recaptcha_secret']
+RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 
 
 django_heroku.settings(locals())
