@@ -16,11 +16,11 @@ class QuestionSubmission(forms.Form):
         'cols':10,
         'style':"width:80%; text-align-last: center;margin:auto; "
     }))
-    captcha = ReCaptchaField(widget=widgets.ReCaptchaV2Checkbox(
+    captcha = ReCaptchaField(label =False,widget=widgets.ReCaptchaV2Checkbox(
         attrs={
             'data-theme': 'dark',
             'data-size': '',
-            'style':"width:80%; text-align-last: center;margin:auto; "
+            'style':"width:80%;float:center; text-align-last: center;margin:auto; "
         }))
 
 
