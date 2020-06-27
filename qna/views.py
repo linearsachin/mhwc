@@ -166,6 +166,7 @@ class HomeView(RatelimitMixin,View):
                     question_text = ques,
                     slug = slug_,
                     time= time,
+                    ip=request.META.get('HTTP_X_FORWARDED_FOR'),
                 )
                 send_mail('email_mods.csv',[slug_],True)
             url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)

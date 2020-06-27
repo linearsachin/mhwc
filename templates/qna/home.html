@@ -91,7 +91,7 @@
 <hr><br>
 <form method="POST" >
     {% csrf_token %}
-    <div class="g-recaptcha" data-sitekey="{{recaptcha}}"></div>
+    {% comment %} <div class="g-recaptcha" data-sitekey="{{recaptcha}}"></div> {% endcomment %}
 
     {{qForm}}
     <input  class="btn btn-grey buttonsInput" type="submit" name="reply" style="color:whitesmoke" id="myBtn">  </input>
