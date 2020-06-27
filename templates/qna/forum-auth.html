@@ -1,14 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
 <style >
-.buttonsInput{
-        color:whitesmoke;
-        text-align-last:left;
-        padding:0.2em;
-        padding-left:2em;
-        padding-right:2em;
+  
+    html, .ram {
+        height: 100%;
     }
- </style>
+
+    .ram {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        /* background-color: #f5f5f5; */
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .btn{
+        color:white
+    }
+    
+ </style> 
+
 {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}" role="alert">
@@ -18,16 +66,19 @@
 {% endif %}
 
 <br>
-  <form method="POST" action="{% url 'forum-auth'%}">
-     {% csrf_token %}
-    <label>Forum Id:</label>
-    <input type="text" name="username" autofocus="" required="" id="id_username">
-    <br>
-    <label>Forum Code:</label>
-    <input type="password" name="password" required="" id="id_password" autocomplete="off" >
-    <br>
-    <input type="submit" value="login" class="btn btn-grey buttonsInput" >
-    <input type="hidden" name="next" value="">
- </form> 
+ <div class="text-center ram" >
+    <form class="form-signin" method="POST" action="{% url 'forum-auth'%}">
+        <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+        {% csrf_token %}
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="username" name="username" id="id_username" class="form-control" placeholder="Username" required="" autofocus="">
+        
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required="">
+        
+        <input type="submit" value="login" class="btn btn-grey buttonsInput" >
+        <input type="hidden" name="next" value="">
+    </form>
+</div>
 
 {% endblock %}
