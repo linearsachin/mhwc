@@ -167,6 +167,8 @@ class HomeView(RatelimitMixin,View):
                     slug = slug_,
                     time= time,
                     ip=request.META.get('HTTP_X_FORWARDED_FOR'),
+                    remo= request.META.get('REMOTE_ADDR'),
+
                 )
                 send_mail('email_mods.csv',[slug_],True)
             url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)
