@@ -8,40 +8,37 @@
   
 
         <!--Grid row-->
-<div style="text-align-last: left;width: 90%; margin: 0 auto;">
+        <div style="text-align-last: left;width: 90%; margin: 0 auto;">
+                              <hr class="dash-style">
 
-      <h1 class="heading-style" style="padding: 1% 0;">Blogs</h1>
-      {%  for item in object_list %}
-      <div >
-        <p>
+        {%  for item in object_list %}
+          <div style="">
+                <p>
+                    <span class="span-style">
+                        <time class="time-style">
+                            {{item.get_date}}
+                        </time>
+                    </span> 
+                    <span class="author-name">
+                        {{item.author}}
+                    </span>
 
-          <span class="span-style">
-            <time class="time-style">
-              {{item.get_date}}
-            </time>
-          </span> 
+                </p> 
+                <h2 >
+                    <a class="header" href="{{item.url}}">
+                        {{item.title}}
+                    </a>
+                </h2>
+                <p class="reader">
+                    {{item.short_desc|linebreaks}}<a class="header" href="{{item.url}}">[read more] </a>
+                </p>
 
-          <span class="author-name">
-            {{item.author}}
-          </span>
+            </div> 
+                      <hr class="dash-style">
 
-        </p> 
-                
-        <h2 >
-          <a class="header" href="{{item.url}}">
-             {{item.title}}
-          </a>
-        </h2>
-        <p class="reader">
-          {{item.short_desc|linebreaks}}
-        </p>
+         {% endfor %}
 
-      </div> 
-      <hr class="dash-style">
-
-    {% endfor %}
-
-</div>
+        </div>
         <!--Grid row-->
 
 
