@@ -20,7 +20,7 @@ class QuestionSubmission(forms.Form):
         attrs={
             'data-theme': 'dark',
             'data-size': 'compact',
-        })
+        }))
 
 
 class ReplySubmission(forms.Form):
