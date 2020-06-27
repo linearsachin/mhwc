@@ -134,7 +134,6 @@ class HomeView(View):
             forumid = request.user.username
         else:
             forumid=''
-        recaptcha = os.environ['recaptcha']
         # try:
         #     questions_ = paginator.page(page)
         # except PageNotAnInteger:
@@ -146,7 +145,6 @@ class HomeView(View):
             'qForm':qForm,
             'qoute':qoute,
             'forumid':forumid,
-            'recaptcha':recaptcha
             
         }
         return render(request ,'qna/home.html',context)
@@ -163,9 +161,6 @@ class HomeView(View):
                     question_text = ques,
                     slug = slug_,
                     time= time,
-                    ip=request.META.get('HTTP_X_FORWARDED_FOR'),
-                    remo= request.META.get('REMOTE_ADDR'),
-
                 )
                 send_mail('email_mods.csv',[slug_],True)
             url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)
