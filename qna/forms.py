@@ -2,11 +2,10 @@ from django import forms
 from django.conf import settings
 import datetime
 from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV2Invisible
+from captcha import widgets 
 
 
 class QuestionSubmission(forms.Form):
-    captcha = ReCaptchaField(widget=ReCaptchaV2Invisible)
     text = forms.CharField(max_length=1000,label =False, required=True,widget=forms.Textarea(attrs={
         'class':"form-control",
         'type':"text",
@@ -17,6 +16,11 @@ class QuestionSubmission(forms.Form):
         'cols':10,
         'style':"width:80%; text-align-last: center;margin:auto; "
     }))
+    captcha = ReCaptchaField(widget=widgets.ReCaptchaV2Checkbox(
+        attrs={
+            'data-theme': 'dark',
+            'data-size': 'compact',
+        })
 
 
 class ReplySubmission(forms.Form):
