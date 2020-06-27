@@ -25,6 +25,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from .forms import QuestionSubmission,ReplySubmission
 
+from ratelimit.mixins import  RatelimitMixin
+from ratelimit.decorators import ratelimit
+
+
 
 
 def randomString(stringLength=15):
@@ -117,7 +121,11 @@ def get_qoute():
                 return row[0]
         return "“If we start being honest about our pain, our anger, and our shortcomings instead of pretending they don’t exist, then maybe we’ll leave the world a better place than we found it.” – Russell Wilson"
         
-class HomeView(View):
+class HomeView(RatelimitMixin,View):
+    ratelimit_key = 'ip'
+    ratelimit_rate = '2/m'
+    ratelimit_block = True
+    ratelimit_method = 'POST'
     def get(self, request):
         questions = PublicQuestion.objects.filter(is_approved=True).order_by('-time')
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)
@@ -144,6 +152,7 @@ class HomeView(View):
             
         }
         return render(request ,'qna/home.html',context)
+
     def post(self,request):
         form = QuestionSubmission(self.request.POST or None)
         try:
