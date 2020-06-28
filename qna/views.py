@@ -277,10 +277,10 @@ class PublicQuestionView(View):
                 qpk = self.request.POST.get('question_pk')
                 question = PublicQuestion.objects.get(pk = qpk)
                 time = tz.now()
-                if request.user.is_staff:
-                    is_prof = request.user.username
-                else:
-                    is_prof=None
+                if request.user.username == 'sachin':
+                    is_prof = 'moderator'
+                elif request.user.username == 'kikstartz':
+                    is_prof= 'professional'
                 PublicReply.objects.create(
                     reply_text = reply,
                     question  = question,
