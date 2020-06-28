@@ -281,6 +281,8 @@ class PublicQuestionView(View):
                     is_prof = 'moderator'
                 elif request.user.username == 'kikstartz':
                     is_prof= 'professional'
+                else:
+                    is_prof=''
                 PublicReply.objects.create(
                     reply_text = reply,
                     question  = question,
