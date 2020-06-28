@@ -10,8 +10,8 @@ urlpatterns = [
     path('forum/welcome', views.ForumView.as_view(), name='forum'),
     path('about', views.AboutView.as_view(), name='about'),
     path('contact', views.ContactView.as_view(), name='contact'),
-    path('forum-auth/', auth_views.LoginView.as_view(template_name='qna/forum-auth.html'),name='forum-auth'),
-    path('forum-out/', auth_views.LogoutView.as_view(template_name='qna/forum-out.html'),name='forum-out'),
+    path('log-in/', auth_views.LoginView.as_view(template_name='qna/forum-auth.html'),name='forum-auth'),
+    path('log-out/', auth_views.LogoutView.as_view(template_name='qna/forum-out.html'),name='forum-out'),
     path('blogs/', views.BlogLinksView.as_view(),name='blog-links'),
     path('blog/<blog_slug>', views.BlogView.as_view(),name='blog'),
 

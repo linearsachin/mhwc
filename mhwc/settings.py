@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'qna',
     'admin_honeypot',
     'captcha',
+    # 'block_ip',
 ]
 
 
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'block_ip.middleware.BlockIPMiddleware',
 ]
 
 SECURE_BROWSER_XSS_FILTER = True

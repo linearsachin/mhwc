@@ -153,18 +153,19 @@ class HomeView(View):
                 try:
                     ip=request.META.get('HTTP_X_FORWARDED_FOR')
                 except:
-                    ip=''
+                    ip=request.META.get('REMOTE_ADDR')
                 PublicQuestion.objects.create(
                     question_text = ques,
                     slug = slug_,
                     time= time,
                     ip=ip
                 )
-                send_mail('email_mods.csv',[slug_],True)
+                # send_mail('email_mods.csv',[slug_],True)
             url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)
             messages.success(request,"Your question has been submitted for review, It will be approved ASAP\ncheck back at {url}".format(url=url))
             return redirect("home")
-        except:            
+        except:
+            messages.warning(request,"There was a problem adding your Question.\nPlease try again")            
             return redirect("home")
 
 
@@ -264,6 +265,7 @@ class PublicQuestionView(View):
             }
             return render(request ,'qna/question.html',context)
         except:
+            messages.warning(request,"Error!")
             return redirect('home')
        
 
@@ -285,8 +287,10 @@ class PublicQuestionView(View):
                     time=time,
                     if_prof=is_prof,
                 )
+                messages.success(request,"Your reply was added")
             return redirect("publicquestion",slug=question.slug)
         except:
+            messages.warning(request,"There was a problem adding your reply")
             return redirect("home")
 
 

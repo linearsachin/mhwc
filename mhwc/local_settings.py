@@ -29,7 +29,10 @@ INSTALLED_APPS = [
     'django_filters',
     'qna',
     'admin_honeypot',
-    'captcha'
+    'captcha',
+    # 'block_ip',
+    'blacklist',
+
 
 ]
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
@@ -41,8 +44,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'blacklist.middleware.blacklist_middleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'block_ip.middleware.BlockIPMiddleware',
+
 ]
 
 # SECURE_BROWSER_XSS_FILTER = True

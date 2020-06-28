@@ -39,6 +39,6 @@ class ReplySubmission(forms.Form):
     captcha = ReCaptchaField(label =False,widget=widgets.ReCaptchaV2Checkbox(
         attrs={
             'data-theme': 'dark',
-            'data-size': '',
+            'data-size': 'compact',
             'style':"float:inherit;width:80%;margin:auto;"
     }))
