@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+{% load google_analytics_tags %}
 
 <head>
   <title>PeerSpace</title>
@@ -69,7 +70,7 @@
           }
       p#innerPara{padding:1em ;margin:0}
       legend{width:5em;margin-left:0.5em;padding:0em 0.75em;background-color: gray;}
-      .link { color: rgb(255,0,0); } /* CSS link color (red) */
+      .link { color:#FF0000; } /* CSS link color (red) */
       .link:hover { color: #00FF00; text-decoration: none; } /* CSS link hover (green) */
       .wrap { 
         float:center;
@@ -115,7 +116,9 @@
 
 <body style="background-color: #CEDBDB;margin-top:3em;height:100%"> 
   {% include "navbar.html" %}
-
+  <div style="display:none">
+    <img src="{% google_analytics %}" width="0" height="0" />
+  </div>
   <div class="row">
     <div class="container-fluid" id="page-container" style="">
       <div id="content-wrap"class="container-fluid">

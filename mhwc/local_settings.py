@@ -32,10 +32,16 @@ INSTALLED_APPS = [
     'captcha',
     # 'block_ip',
     'blacklist',
+    'google_analytics',
 
 
 ]
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+GOOGLE_ANALYTICS = {
+    'google_analytics_id': os.environ['djga'],
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

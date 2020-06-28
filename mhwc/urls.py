@@ -20,8 +20,7 @@ urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('pokemon-catchemall/', admin.site.urls),
     path('', include('qna.urls')),
-    # path('accounts/', include('django.contrib.auth.urls'))
-    
+    path('djga/', include('google_analytics.urls')),       
 ]
 
 handler404 = temps.handler404

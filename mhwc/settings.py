@@ -49,8 +49,14 @@ INSTALLED_APPS = [
     'captcha',
     # 'block_ip',
     'blacklist',
+    'google_analytics',
+
 
 ]
+
+GOOGLE_ANALYTICS = {
+    'google_analytics_id': os.environ['djga'],
+}
 
 
 MIDDLEWARE = [
