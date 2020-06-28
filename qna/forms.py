@@ -36,3 +36,9 @@ class ReplySubmission(forms.Form):
         'style':"width:80%; text-align-last: center;margin:auto; "
     }))
     hidden = forms.HiddenInput()
+    captcha = ReCaptchaField(label =False,widget=widgets.ReCaptchaV2Checkbox(
+        attrs={
+            'data-theme': 'dark',
+            'data-size': '',
+            'style':"float:inherit;width:80%;margin:auto;"
+    }))
