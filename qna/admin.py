@@ -18,7 +18,7 @@ class QuestionsAdmin(admin.ModelAdmin):
         slugs=[]
         for question in queryset:
             slugs.append(question.slug)
-        # send_mail('email.csv',slugs,False)
+        send_mail('email.csv',slugs,False)
 
 class BlogsAdmin(admin.ModelAdmin):
     list_display = ('title','author','date')

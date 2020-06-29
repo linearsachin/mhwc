@@ -160,7 +160,7 @@ class HomeView(View):
                     time= time,
                     ip=ip
                 )
-                # send_mail('email_mods.csv',[slug_],True)
+                send_mail('email_mods.csv',[slug_],True)
             url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)
             messages.success(request,"Your question has been submitted for review, It will be approved ASAP\ncheck back at {url}".format(url=url))
             return redirect("home")
