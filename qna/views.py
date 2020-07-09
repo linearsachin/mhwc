@@ -148,7 +148,7 @@ class HomeView(View):
             if form.is_valid():
                 ques = form.cleaned_data.get('text')
                 trun = random.randint(20, 30)
-                slug_= slugify(ques[:trun]+""+randomString(3))
+                slug_= slugify(ques[:trun]+" "+randomString(3))
                 time = tz.now()
                 try:
                     ip=request.META.get('HTTP_X_FORWARDED_FOR')
@@ -168,6 +168,11 @@ class HomeView(View):
             messages.warning(request,"There was a problem adding your Question.\nPlease try again")            
             return redirect("home")
 
+def listToString(s):  
+    str1 =  "" 
+    for ele in s:  
+        str1 +=( ele + "\n")  
+    return str1  
 
 def send_mail(filename,question_slugs,is_to_mod=True):     
     gmail_user = os.environ['gmail_id']
@@ -181,11 +186,12 @@ def send_mail(filename,question_slugs,is_to_mod=True):
     url=[]
     for slug in question_slugs:
         url.append('https://peer-space.herokuapp.com/public-question/{question}'.format(question=slug))
+    url = listToString(url)
     subject = 'Question(s) Added to Public Forum'
     if is_to_mod:
-        body = "A Question was added to the forum.\nPlease Approve it ASAP:\n{URL}\nThank You.".format(URL = url)
+        body = "Question(s) was added to the forum.\nPlease Approve it ASAP:\n{URL}\nThank You.".format(URL = url)
     else:
-        body = "A Question was added to the forum.\nHelp them by visiting:\n{URL}\nThank You.".format(URL = url)
+        body = "Question(s) was added to the forum.\nHelp them by visiting:\n{URL}\nThank You.".format(URL = url)
 
     email_text = """\
 From: %s

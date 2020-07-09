@@ -18,11 +18,17 @@ class QuestionsAdmin(admin.ModelAdmin):
         slugs=[]
         for question in queryset:
             slugs.append(question.slug)
-        send_mail('email.csv',slugs,False)
+        send_mail('email_mods.csv',slugs,False)
 
 class ReplyAdmin(admin.ModelAdmin):
     list_display = ('question','time','if_prof')
     list_filter = ['time','if_prof']
+
+def listToString(s):  
+    str1 =  "" 
+    for ele in s:  
+        str1 +=( ele + "\n")  
+    return str1  
 
 
 class BlogsAdmin(admin.ModelAdmin):
