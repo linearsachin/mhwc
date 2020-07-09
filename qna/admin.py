@@ -20,6 +20,11 @@ class QuestionsAdmin(admin.ModelAdmin):
             slugs.append(question.slug)
         send_mail('email.csv',slugs,False)
 
+class ReplyAdmin(admin.ModelAdmin):
+    list_display = ('question','time','if_prof')
+    list_filter = ['time','if_prof']
+
+
 class BlogsAdmin(admin.ModelAdmin):
     list_display = ('title','author','date')
     list_filter = ['title','date']
@@ -40,7 +45,7 @@ class BlogsAdmin(admin.ModelAdmin):
 admin.site.register(Question)
 admin.site.register(Reply)
 admin.site.register(PublicQuestion,QuestionsAdmin)
-admin.site.register(PublicReply)
+admin.site.register(PublicReply,ReplyAdmin)
 admin.site.register(BlogLink)
 admin.site.register(Blog,BlogsAdmin)
 
