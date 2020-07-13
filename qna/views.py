@@ -3,8 +3,8 @@ from django.utils.text import slugify
 from django.views.generic import View ,ListView
 from django.http import HttpResponse
 from .models import (
-    Question,
-    Reply,
+    # Question,
+    # Reply,
     PublicQuestion,
     PublicReply,
     Blog,
@@ -16,7 +16,10 @@ from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 import smtplib
 import csv
 import django.utils.timezone as tz
-from .filters import QuestionFilter,PublicQuestionFilter
+from .filters import ( 
+    # QuestionFilter,
+    PublicQuestionFilter
+)
 import datetime 
 import random
 import string
@@ -36,81 +39,81 @@ def randomString(stringLength=15):
     return ''.join(random.choice(letters) for i in range(stringLength))
 
 
-class ForumAuthView(View):
-    def get(self, request,forum_id, *args, **kwargs):
-        forum = User.objects.get(username=forum_id)
-        context ={
-            "forumid":forum.username,
-            "forumcode":forum.password,
-        }
-        return render(request ,'qna/forum-auth.html',context)
+# class ForumAuthView(View):
+#     def get(self, request,forum_id, *args, **kwargs):
+#         forum = User.objects.get(username=forum_id)
+#         context ={
+#             "forumid":forum.username,
+#             "forumcode":forum.password,
+#         }
+#         return render(request ,'qna/forum-auth.html',context)
 
-    def post(self, request, *args, **kwargs):
-        forum_id = self.request.POST.get('forumid')
-        forum_code = self.request.POST.get('forumcode')
-        forum = authenticate(username = forum_id,password=forum_code)
-        if forum is not None:
-            return redirect('forum',forum_id)
-        else:
-            messages.warning(request,f'Wrong Forum Code for {forum_id}')
-            return redirect('forum-auth',forum_id)
-
-
-
-def generateForum(request):
-    if not request.user.is_authenticated:
-        forumId = randomString(10)
-        forumCode = str(random.randint(100000,99999999)) + randomString(4)
-        User.objects.create_user(
-            username = forumId,
-            password  =forumCode,
-        )
-        messages.success(request, f"Your forum Id is: {forumId}")
-        messages.success(request, f"Remeber This Code for further login: {forumCode}")
-        return redirect("forum-auth")
-    else:
-        messages.warning(request,'You are already in a forum')
-        return redirect('home')
+#     def post(self, request, *args, **kwargs):
+#         forum_id = self.request.POST.get('forumid')
+#         forum_code = self.request.POST.get('forumcode')
+#         forum = authenticate(username = forum_id,password=forum_code)
+#         if forum is not None:
+#             return redirect('forum',forum_id)
+#         else:
+#             messages.warning(request,f'Wrong Forum Code for {forum_id}')
+#             return redirect('forum-auth',forum_id)
 
 
 
-class ForumView(View):
-    def get(self, request, *args, **kwargs):
-        try:
-            forum = User.objects.get(username=request.user.username)
-            questions = Question.objects.filter(forum=forum).order_by('-time')
-            question_filter = QuestionFilter(request.GET, queryset=questions)
-            qForm = QuestionSubmission()
-            qoute = get_qoute()
-            context = {
-                'questions':question_filter,
-                'qForm':qForm,
-                'qoute':qoute,
-                "forumid":forum.username,  
-            }
-            return render(request ,'qna/forum.html',context)
-        except:
-            return render(request ,'qna/forum.html')
+# def generateForum(request):
+#     if not request.user.is_authenticated:
+#         forumId = randomString(10)
+#         forumCode = str(random.randint(100000,99999999)) + randomString(4)
+#         User.objects.create_user(
+#             username = forumId,
+#             password  =forumCode,
+#         )
+#         messages.success(request, f"Your forum Id is: {forumId}")
+#         messages.success(request, f"Remeber This Code for further login: {forumCode}")
+#         return redirect("forum-auth")
+#     else:
+#         messages.warning(request,'You are already in a forum')
+#         return redirect('home')
 
-    def post(self,request,*args, **kwargs):
-        form = QuestionSubmission(self.request.POST or None)
-        try:
-            if form.is_valid():
-                forum_id =request.user.username
-                forum = User.objects.get(username=forum_id)
-                ques = form.cleaned_data.get('text')
-                trun = random.randint(20, 30)
-                slug_  =slugify(ques[:trun]+""+randomString(3))
-                time = tz.now()
-                Question.objects.create(
-                    forum = forum,
-                    question_text = ques,
-                    slug = slug_,
-                    time= time,
-                )
-            return redirect("question",slug=slug_,)
-        except:
-            return redirect("home")
+
+
+# class ForumView(View):
+#     def get(self, request, *args, **kwargs):
+#         try:
+#             forum = User.objects.get(username=request.user.username)
+#             questions = Question.objects.filter(forum=forum).order_by('-time')
+#             question_filter = QuestionFilter(request.GET, queryset=questions)
+#             qForm = QuestionSubmission()
+#             qoute = get_qoute()
+#             context = {
+#                 'questions':question_filter,
+#                 'qForm':qForm,
+#                 'qoute':qoute,
+#                 "forumid":forum.username,  
+#             }
+#             return render(request ,'qna/forum.html',context)
+#         except:
+#             return render(request ,'qna/forum.html')
+
+#     def post(self,request,*args, **kwargs):
+#         form = QuestionSubmission(self.request.POST or None)
+#         try:
+#             if form.is_valid():
+#                 forum_id =request.user.username
+#                 forum = User.objects.get(username=forum_id)
+#                 ques = form.cleaned_data.get('text')
+#                 trun = random.randint(20, 30)
+#                 slug_  =slugify(ques[:trun]+""+randomString(3))
+#                 time = tz.now()
+#                 Question.objects.create(
+#                     forum = forum,
+#                     question_text = ques,
+#                     slug = slug_,
+#                     time= time,
+#                 )
+#             return redirect("question",slug=slug_,)
+#         except:
+#             return redirect("home")
 
 
 def get_qoute():
@@ -122,7 +125,6 @@ def get_qoute():
         return "“Shame dies when stories are told in safe places.” ― Ann Voskamp"
         
 class HomeView(View):
-
     def get(self, request):
         questions = PublicQuestion.objects.filter(is_approved=True).order_by('-time')
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)

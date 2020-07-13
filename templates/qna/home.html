@@ -105,7 +105,7 @@
       <button class="btn btn-grey buttonsInput" type="submit" style="color:whitesmoke"> Search </button>
     </form>
     {% if  request.user.is_authenticated %}
-      <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" style="color:whitesmoke">Go To Your Forum</a>
+      {% comment %} <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" style="color:whitesmoke">Go To Your Forum</a> {% endcomment %}
     {% else %}
       {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey buttonsInput" >Click to generate a forum</a> {% endcomment %}
     {% endif %}

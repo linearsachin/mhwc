@@ -1,11 +1,13 @@
 from django.contrib import admin
 from .models import (
-    Question,
-    Reply,
+    # Question,
+    # Reply,
     PublicQuestion,
     PublicReply,
     BlogLink,
     Blog,
+    MoodCheck,
+    MoodQ,
 )
 from .views import send_mail
 # Register your models here.
@@ -48,10 +50,12 @@ class BlogsAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(Question)
-admin.site.register(Reply)
+# admin.site.register(Question)
+# admin.site.register(Reply)
 admin.site.register(PublicQuestion,QuestionsAdmin)
 admin.site.register(PublicReply,ReplyAdmin)
 admin.site.register(BlogLink)
 admin.site.register(Blog,BlogsAdmin)
+admin.site.register(MoodCheck)
+admin.site.register(MoodQ)
 
