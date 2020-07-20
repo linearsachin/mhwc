@@ -59,7 +59,9 @@
       body {
         overflow:hidden;
       }
-
+      * {
+        display:border-box;
+      }
       fieldset{
        background: #4ca190;
        background-repeat:no-repeat;
@@ -67,7 +69,8 @@
        background-size:cover;
        border-radius: 5px;
        box-shadow: 4px 4px #5c827b;
-          }
+
+        }
       p#innerPara{padding:1em ;margin:0}
       legend{width:5em;margin-left:0.5em;padding:0em 0.75em;background-color: gray;}
       .link { color:#FF0000; } /* CSS link color (red) */
@@ -114,7 +117,7 @@
     </style>
 </head>
 
-<body style="background-color: #F3F3F3 ;margin-top:3em;height:100%"> 
+<body style="background-color: #cedbdb ;margin-top:3em;height:100%"> 
   {% include "navbar.html" %}
   <div style="display:none">
     <img src="{% google_analytics %}" width="0" height="0" />
