@@ -42,7 +42,7 @@ class BlogsAdmin(admin.ModelAdmin):
             BlogLink.objects.create(
                 title = blog.title,
                 short_desc = blog.text[:200],
-                url = "http://127.0.0.1:8000/blog/"+blog.slug,
+                url = "https://peer-space.herokuapp.com/blog/"+blog.slug,
                 author = blog.author,
                 website_name = "PeerSpace",
                 time = blog.date,
