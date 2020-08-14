@@ -19,8 +19,9 @@ class QuestionSubmission(forms.Form):
         attrs={
             'data-theme': 'light',
             'data-size': '',
-            'style':"float:inherit;width:80%;margin:auto;",
-            'class':"small"
+            'style':"float:inherit;width:80%;margin:auto;display:none",
+            'class':"small",
+            'id':"captcha"
         }))
 
 

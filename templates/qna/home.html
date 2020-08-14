@@ -168,6 +168,18 @@
 
 
 <script>
+    document.getElementById("question").onfocus = function() {openCaptcha()};
+    document.getElementById("question").onblur = function() {openCaptcha()};
+
+
+    function openCaptcha() {
+        if (document.getElementById('captcha').style.display == 'inherit'){
+            document.getElementById('captcha').style.display = 'none'
+        }
+        else{
+            document.getElementById('captcha').style.display = 'inherit'
+        }
+    }
   $('.carousel.carousel-slider').carousel({
     fullWidth: true,
     indicators: true
