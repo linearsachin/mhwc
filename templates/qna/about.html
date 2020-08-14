@@ -1,17 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+{% block extra_head %}
+<style>
+  pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
 
-  <fieldset class="border border" style="width:90%;margin-left:5%;margin-right:5%">
-      <div class="" style="padding:2%">
-          <p class="wrap" style="color:white">
-          <i>Peerspace: A safe space for our friends to express their hearts out.
+}
+</style>
+{% endblock extra_head %}
 
-              Just like you, we too have come to understand that some experiences turn out to be more taxing for our peace and too heavy to deal with on our own.
-
-              We at Peerspace wish to provide you a place where you can anonymously vent what bothers you. We as helpers aim to provide comfort and assistance to you, a seeker.
-              
-              With the highs of life come the lows and for starters, just know it's okay to feel the way you do. We are in this together.</i></p>
+<div class="container">
+  <div class="card-panel teal medium  radius" >
+    <div class="row white-text">
+      <div class="col s12 m12 l6">
+        <img src='{% static "img/poster2.jpg" %}' style="max-width: 100%">
       </div>
-  </fieldset>
+      <div class="col s12 m12 l6">
+        <pre style="color:white">
+        <i>
+  Peerspace: A safe space for our friends to express their hearts out.
+
+  Just like you, we too have come to understand that some experiences turn out to be more taxing for our peace and too heavy to deal with on our own.
+
+  We at Peerspace wish to provide you a place where you can anonymously vent what bothers you. We as helpers aim to provide comfort and assistance to you, a seeker.
+                
+  With the highs of life come the lows and for starters, just know it's okay to feel the way you do. We are in this together.
+        </i>
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock content %}

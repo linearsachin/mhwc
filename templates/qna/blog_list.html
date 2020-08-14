@@ -6,77 +6,47 @@
 {% endblock extra_head %}
 {% block content %}
   
-
-        <!--Grid row-->
-<div style="text-align-last: left;width: 90%; margin: 0 auto;">
-
-      <h1 class="heading-style" style="padding: 1% 0;">Blogs</h1>
-      {%  for item in object_list %}
+<div style="text-align-last: left;" class="container">
+    <h3 class="heading-style" style="padding: 1% 0;margin: 0 auto;">Blogs</h3>
+    {%  for item in object_list %}
       <div >
         <p>
-
           <span class="span-style">
             <time class="time-style">
               {{item.get_date}}
             </time>
           </span> 
-
           <span class="author-name">
             {{item.author}}
           </span>
-
-        </p> 
-                
-        <h2 >
-          <a class="header" href="{{item.url}}">
-             {{item.title}}
+        </p>                 
+        <h4>
+          <a class="header" href="{{item.url}}" target="_blank">
+            {{item.title}}
           </a>
-        </h2>
+        </h4>
         <p class="reader">
-          {{item.short_desc|linebreaks}}
+          {{item.short_desc|linebreaks}}<a class="header inline" href="{{item.url}}" target="_blank">[read more] </a>
         </p>
-
       </div> 
       <hr class="dash-style">
-
     {% endfor %}
-
 </div>
-        <!--Grid row-->
 
+<ul class="pagination center">
+  {% if page_obj.has_previous %}
+      <li class="waves-effect"><a href="?page={{page_obj.previous_page_number}}"><i class="material-icons">chevron_left</i></a></li>
+  {% endif %}
 
+  <li class="waves-effect" style="background-color:#4ca190">
+      <a class="page-link" href="?page={{page_obj.number}}" style="color:white">{{page_obj.number}}
+      <span class="sr-only">(current)</span>
+      </a>
+  </li>
 
-
-
-{% if is_paginated  %}
-
-      <!--Pagination-->
-      <nav class="d-flex justify-content-center wow fadeIn">
-        <ul class="pagination" >
-
-          {% if page_obj.has_previous %}
-            <li class="page-item ">
-              <a class="page-link"  href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
-                <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-          {% endif %}
-          <li class="page-item " style="background-color:#309c87">
-            <a class="page-link" href="?page={{page_obj.number}}" style="color:white">{{page_obj.number}}
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          {% if page_obj.has_next %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
-                  <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-          {% endif %}
-        </ul>
-      </nav>
-       {% endif %}
+  {% if page_obj.has_next %}
+      <li class="waves-effect"><a href="?page={{page_obj.next_page_number}}"><i class="material-icons">chevron_right</i></a></li>
+  {% endif %}
+</ul>
 
 {% endblock content %}

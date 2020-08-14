@@ -18,10 +18,12 @@
 </style>
 {% endblock extra_head %}
 {% block content %}
-    <fieldset class="border border" style="width:90%;margin-left:5%;margin-right:5%;padding:2%">
-      <div class="row-cols-lg-1 row-cols-md-1 row-cols-sm-1" style="float:center;padding:2%">
-          <p style="color:white;margin:1em">For any queries contact:<br>
-            <img src="{% static 'img/logo.png' %}" style="filter:brightness(1.5)">
+<div class="container">
+  <div class="card-panel teal large" >
+    <div class="row white-text">
+      <div class="col s12 m12 l6">
+        <p style="color:white;margin:1em">For any queries contact:<br>
+            <img src="{% static 'img/logo.png' %}" style="margin:2em;filter:brightness(1.5);max-width:100%">
             <p style="text-align:center;color:white;margin:1em">Peerspace: A safe space for our 
             friends to express their hearts out.</p>
             <b><br><a href="mailto:peerspaceofficial@gmail.com" style="color:whitesmoke;">peerspaceofficial@gmail.com</a></b>
@@ -29,15 +31,18 @@
               <i class="fa fa-instagram" aria-hidden="true"></i> peerspaceofficial
             </a>
           </p>
-          <br>
-          <p style="color:white;margin:1em">For Professional help contact:<br>
-            <img src="{% static 'img/kikstartzlogo.png' %}" id="kikstartz" >
-            <p style="color:white;margin:1em">Kikstartz  Rehabilitation LLP is a unique  combination of "Diversity Inclusion and Healthy" workplace services. It provides  Ergonomic,Occupational and Mental Health Consultation to enhance health and productivity and strengthens human resources with it's diversity inclusion vocational rehabilitation programs.
+      </div>
+      <div class="col s12 m12 l6">
+        <p style="color:white;margin:1em">For Professional help contact:<br>
+            <img src="{% static 'img/kikstartzlogo.png' %}" id="kikstartz" style="margin:2em;filter:brightness(1.5);max-width:120%">
+            <p style="color:white;margin:1em;opacity: 60%;text-align-last: left;">Kikstartz  Rehabilitation LLP is a unique  combination of "Diversity Inclusion and Healthy" workplace services. It provides  Ergonomic,Occupational and Mental Health Consultation to enhance health and productivity and strengthens human resources with it's diversity inclusion vocational rehabilitation programs.
 Kikstartz D-clutter segment of Mental Health and Wellness drive for all, provides support to PeerSpace in this initiative of creating a safe space of expression and seeking help .</p>
-            <b><br><a href="mailto:peerspaceofficial@gmail.com" style="color:whitesmoke;">kikstartzdclutter@gmail.com</a><br>
+            <b><br><a href="mailto:kikstartzdclutter@gmail.com?subject=Contacting Via PeerSpace" style="color:whitesmoke;">kikstartzdclutter@gmail.com</a><br>
             visit: <a href="http://kikstartz.com/" style="color:whitesmoke;">www.kikstartz.com</a>
             </b>
           </p>
       </div>
-    </fieldset>
+    </div>
+  </div>
+</div>
 {% endblock content %}

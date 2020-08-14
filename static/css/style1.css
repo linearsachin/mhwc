@@ -10,12 +10,14 @@ font-family: 'Jost', sans-serif; */
     font-family: 'Jost', sans-serif;
     text-decoration: none;
     color: black; 
+    font-size: 3rem;
 } 
 
-.header:active{
-    font-family: 'Jost', sans-serif;
-    text-decoration: none;
+.header:hover{
     color: rgb(204, 60, 60);
+}
+.header:visited{
+    color: #4ca190;
 }
 
 .reader{
@@ -38,6 +40,7 @@ font-family: 'Jost', sans-serif; */
 .author-name{
     font-family: 'NTR', sans-serif;
     padding: 10px;
+    margin: 0 auto;;
 }
 
 .dash-style{

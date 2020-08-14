@@ -8,51 +8,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% comment %} <meta name="viewport" content="width=device-width, user-scalable=no"> {% endcomment %}
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
     <link rel="shortcut icon" type="image/jpg" href="{% static 'img/favicon.png' %}"/>
     {% block extra_head %}
-{% endblock extra_head %}
+    {% endblock extra_head %}
     <style>  
-      {% comment %} html,
-      body,
-      header,
-      .carousel {
-        height: 60vh;
-      }
-
-      @media (max-width: 740px) {
-
-        html,
-        body,
-        header,
-        .carousel {
-          height: 100vh;
-        }
-      }
-
-      @media (min-width: 800px) and (max-width: 850px) {
-
-        html,
-        body,
-        header,
-        .carousel {
-          height: 100vh;
-        }
-      } {% endcomment %}
       html {
         overflow-x: hidden;
       }
@@ -62,44 +32,8 @@
       * {
         display:border-box;
       }
-      fieldset{
-       background: #4ca190;
-       background-repeat:no-repeat;
-       background-position:center;
-       background-size:cover;
-       border-radius: 5px;
-       box-shadow: 4px 4px #5c827b;
-
-        }
-      p#innerPara{padding:1em ;margin:0}
-      legend{width:5em;margin-left:0.5em;padding:0em 0.75em;background-color: gray;}
-      .link { color:#FF0000; } /* CSS link color (red) */
-      .link:hover { color: #00FF00; text-decoration: none; } /* CSS link hover (green) */
-      .wrap { 
-        float:center;
-        white-space: pre-wrap;      /* CSS3 */   
-        white-space: -moz-pre-wrap; /* Firefox */    
-        white-space: -pre-wrap;     /* Opera <7 */   
-        white-space: -o-pre-wrap;   /* Opera 7 */    
-        word-wrap: break-word;      /* IE */
-        padding:0em
-        }
-      #coolcomment{
-      padding: 5%;
-      margin: 0.5%;
-      }
-      @media only screen and (max-device-width: 800px) {
-          #coolcomment{
-              padding: 0%;
-              margin: 0.5%;
-          }
-
-      }
-      #footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 1.5rem;            /* Footer height */
+      img {
+         max-width: 100%;
       }
       #content-wrap {
         padding-bottom:1.5rem;    /* Footer height */
@@ -108,27 +42,29 @@
         height:100%; 
         margin-top:1.5em; 
       }
-      #page-container {
-        position: relative;
-        min-height: 81vh;
-        margin: auto;
+      hr {
+        border-top:1px solid #65626242;
       }
+
+      .peerspace {
+        background-color: #4ca190;
+      }
+
+
+
 
     </style>
 </head>
-
-<body style="background-color: #cedbdb ;margin-top:3em;height:100%"> 
-  {% include "navbar.html" %}
+{% include "navbar.html" %}
+<body style="background-color: #cedbdb ;"> 
   <div style="display:none">
     <img src="{% google_analytics %}" width="0" height="0" />
   </div>
   <div class="row">
-    <div class="container-fluid" id="page-container" style="">
       <div id="content-wrap"class="container-fluid">
         {% block content %}
         {% endblock content %}
       </div>
-    </div>
   </div>
 </body>
   {% include "footer.html" %}

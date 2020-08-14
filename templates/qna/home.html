@@ -2,20 +2,43 @@
 {% load static %}
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/style4.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
     <link href="https://fonts.googleapis.com/css?family=Baloo+Paaji+2|Sen&display=swap" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
-      .buttonsInput{
-          color:whitesmoke;
-          text-align-last:left;
-          padding:0.2em;
-          padding-left:2em;
-          padding-right:2em;
-      } 
+      .qoute {
+        border-left: 10px solid #4ca190;
+      }
+      .maxW {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0.75em;
+      }
+      .maxW-ques {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.75em;
+      }
+      img{
+        max-width: 100%;
+      }
+      .time {
+        color: white;
+        opacity: 60%;
+      }
+      .dark {
+        background-color: black;
+        padding: 2em;
+        color: whitesmoke;
+      }
+      .border-white {
+        border: 1px solid white;
+      }
+      .question-box{
+        background-color: #4ca190;
+        color: white;
+        margin: 1em;
+      }
+
+
     </style>
 {% endblock extra_head %}
 {% block content %}
@@ -33,85 +56,81 @@
   <label>supported by <a href="http://kikstartz.com/" style="color:#4ca190"><b>Kikstartz Rehabilitation LLP</b></a></label>
 </div>
 <hr>
-<div class="w3-panel w3-leftbar"> 
+<div class="qoute maxW"> 
   <p>
     <i class="fa fa-quote-right w3-xxlarge"></i><br>
     <i>{{qoute}}</i>
+    
   </p>
 </div>
 <hr>
-<section id="testimonials" >
 
-  <div id="testimonial-carousel" class="carousel slide border border-light" data-ride="carousel" data-interval="100000">
-    
-    <ol class="carousel-indicators">
-      <li data-target="#testimonial-carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#testimonial-carousel" data-slide-to="1"></li>
-      <li data-target="#testimonial-carousel" data-slide-to="2"></li>
-      <li data-target="#testimonial-carousel" data-slide-to="3"></li>
-      <li data-target="#testimonial-carousel" data-slide-to="4"></li>
-    </ol>
-
-    <div class="carousel-inner">
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-
-          <div class="carousel-item active image-style-carousel">
-            <img src="{% static 'img/peerspace1.png' %}" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item image-style-carousel">
-            <img src="{% static 'img/peerspace2.png' %}" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item image-style-carousel">
-            <img src="{% static 'img/peerspace3.png' %}" class="d-block w-100" alt="...">
-          </div> 
-          <div class="carousel-item image-style-carousel">
-            <img src="{% static 'img/peerspace4.png' %}" class="d-block w-100" alt="...">
-          </div> 
-          <div class="carousel-item image-style-carousel">
-            <a href="{% url 'contact' %}"><img src="{% static 'img/peerspace5.png' %}" class="d-block w-100" alt="..."></a>
-          </div> 
- 
-
-        </div>
-      </div>
-    </div>
-
-    <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+<div class="carousel carousel-slider maxW border-white">
+  <div class="carousel-item">
+    <img src="{% static 'img/peerspace1.png' %}" class="d-block w-100" alt="...">
   </div>
-
-</section>
-<hr><br>
-<form method="POST" >
-    {% csrf_token %}
-    {% comment %} <div class="g-recaptcha" data-sitekey="{{recaptcha}}"></div> {% endcomment %}
-
-    {{qForm}}
-    <input  class="btn btn-grey buttonsInput" type="submit" name="reply" style="color:whitesmoke" id="myBtn">  </input>
-</form>
-<br>
-<details class="btn btn-outline-dark" >
-  <summary style=" outline: none;">Open Options</summary>
-  <p>
-    <form class="" method="get" action="" >
-      {{ questions.form}}
-      <button class="btn btn-grey buttonsInput" type="submit" style="color:whitesmoke"> Search </button>
+  <div class="carousel-item">
+    <img src="{% static 'img/peerspace2.png' %}" class="d-block w-100" alt="...">
+  </div>
+  <div class="carousel-item">
+    <img src="{% static 'img/peerspace3.png' %}" class="d-block w-100" alt="...">
+  </div>
+  <div class="carousel-item">
+    <img src="{% static 'img/peerspace4.png' %}" class="d-block w-100" alt="...">
+  </div>
+  <div class="carousel-item">
+    <img src="{% static 'img/peerspace5.png' %}" class="d-block w-100" alt="...">
+  </div>
+</div>
+<hr>
+<div class="" style="background-color: #4ca190;padding-top: 1em;">
+  <div class="container dark" >
+    <form method="POST" class="">
+        {% csrf_token %}
+        {% comment %} <div class="g-recaptcha" data-sitekey="{{recaptcha}}"></div> {% endcomment %}
+        <label for="question"><h4>Ask Anything</h4></label>
+        {{qForm.as_p}}
+        <input  class="btn btn-grey buttonsInput" type="submit" name="reply" style="color:whitesmoke" id="myBtn">  </input>
     </form>
-    {% if  request.user.is_authenticated %}
-      {% comment %} <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" style="color:whitesmoke">Go To Your Forum</a> {% endcomment %}
-    {% else %}
-      {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey buttonsInput" >Click to generate a forum</a> {% endcomment %}
-    {% endif %}
-  </p>
-</details>
-    <hr>
+  </div>
+  <br>
+  <div class="row center maxW">
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header black white-text"><i class="material-icons">filter_drama</i>Open Options</div>
+        <div class="collapsible-body" style="background-color:#cedbdb ">
+          <form class="" method="get" action="" >
+            {{ questions.form}}
+            <button class="btn btn-grey" type="submit" style="color:whitesmoke"> Search </button>
+          </form>
+          {% if  request.user.is_authenticated %}
+            {% comment %} <a href="{% url 'forum'  %}" class="btn btn-grey buttonsInput" style="color:whitesmoke">Go To Your Forum</a> {% endcomment %}
+          {% else %}
+            {% comment %} <a href="{% url 'generate-forum' %}" class="btn btn-grey buttonsInput" >Click to generate a forum</a> {% endcomment %}
+          {% endif %}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="row radius">
+    {% for question  in questions.qs %}
+        <div class="col s12 m6 l4 ">
+          <div class="card-panel teal medium  radius" >
+            <div class="time small"><small>{{question.get_time_diff}}</small></div>
+            <div class="white-text" style="text-align-last:left;word-wrap: break-word;">{{question.question_text}}</div>
+            <div class="text-left">
+              <a href="{% url 'publicquestion' slug=question.slug  %}"  class="waves-effect waves-light btn-flat grey btn-small white-text" style="margin-top: 0.5em;">Reply</a>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- 
 <div class="container-fluid " id="coolcomment">
   {% for question  in questions.qs %}
   <fieldset class="border border-0" style="">
@@ -124,10 +143,38 @@
     </div> 
   </fieldset><span style=" display: block; margin-bottom: 0.4em; "></span>
   {% endfor %}
-<div>
-</div>
-</div>
+<div> -->
+<!-- <div class="maxW-ques">
+  <div class="row">
+      {% for question  in questions.qs %}
+      <div class="margin-custom">
+        <div class="card col s12 m6 l4 question-box">
+          <div class="time">
+            <p class="card-title-cus" style="text-align-last:left">{{question.get_time_diff}}</p>
+          </div>
+          <div class="card-content">
+            <p class="left">{{question.question_text}}</p>
+          </div>
+          <div class="divider"></div>
+          <div class="card-action left-align">
+            <a href="{% url 'publicquestion' slug=question.slug  %}"  class="left">Reply</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+</div> -->
+
+
+
 <script>
-    
-    </script>
+  $('.carousel.carousel-slider').carousel({
+    fullWidth: true,
+    indicators: true
+  });
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+        
+</script>
 {% endblock  %}
