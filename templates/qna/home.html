@@ -110,10 +110,10 @@
 <div class="container">
   <div class="row radius">
     {% for question  in questions.qs %}
-        <div class="col s12 m12 l6 ">
-          <div class="card-panel teal medium  radius" >
+        <div class="col s12 m12 l12 ">
+          <div class="card-panel teal medium  hoverable" >
             <div class="time small"><small>{{question.get_time_diff}}</small></div>
-            <div class="white-text" style="text-align-last:left;word-wrap: break-word;">{{question.question_text}}</div>
+            <div class="white-text" id="question" style="text-align-last:left;word-wrap: break-word;">{{question.question_text}}</div>
             <div class="text-left">
               <a href="{% url 'publicquestion' slug=question.slug  %}"  class="waves-effect waves-light btn-flat grey btn-small white-text" style="margin-top: 0.5em;">Reply</a>
             </div>
@@ -180,6 +180,8 @@
   $(document).ready(function(){
     $('.collapsible').collapsible();
   });
+  
+
         
 </script>
 {% endblock  %}
