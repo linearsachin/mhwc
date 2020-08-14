@@ -110,7 +110,7 @@
 <div class="container">
   <div class="row radius">
     {% for question  in questions.qs %}
-        <div class="col s12 m6 l4 ">
+        <div class="col s12 m12 l6 ">
           <div class="card-panel teal medium  radius" >
             <div class="time small"><small>{{question.get_time_diff}}</small></div>
             <div class="white-text" style="text-align-last:left;word-wrap: break-word;">{{question.question_text}}</div>
