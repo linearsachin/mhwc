@@ -46,30 +46,29 @@
             </div>
         </div>
         
-                {% if replies %}
-                <div class="container">
-                    <label for="innerpara"><h3>Replies</h3></label>
-                    {% for  reply in replies %}
-                    <div class="card-panel teal row" style="padding: 2em;">
-                        <div class="time small"><small>{{question.get_time_diff}}</small></div>
-                        {% if reply.if_prof %}
-                            <span class="span-style" style="font-family: 'NTR', sans-serif;background-color: #4dD191;">
-                                <label style="padding:10px;color:black;">{{reply.if_prof}}</label>
-                            </span>
-                        {% endif %}
-                        <p  class="white-text" style="text-align-last: left;word-wrap: break-word;">{{reply.reply_text}}<p>
-                            
-                        </div>
-                    <span style=" display: block; margin-bottom: 0.4em; "></span>
-                    {% endfor %}
+        {% if replies %}
+        <div class="container">
+            <label for="innerpara"><h3>Replies</h3></label>
+            {% for  reply in replies %}
+            <div class="card-panel teal row" style="padding: 2em;">
+                <div class="time small"><small>{{reply.get_time_diff}}</small></div>
+                    {% if reply.if_prof %}
+                        <span class="span-style" style="font-family: 'NTR', sans-serif;background-color: #4dD191;">
+                            <label style="padding:10px;color:black;">{{reply.if_prof}}</label>
+                        </span>
                     {% endif %}
-                </div> 
+                    <p  class="white-text" style="text-align-last: left;word-wrap: break-word;">{{reply.reply_text}}<p>
+                    
+                </div>
+            <span style=" display: block; margin-bottom: 0.4em; "></span>
+            {% endfor %}
+            {% endif %}
+        </div> 
     <div>
 </div>
 </div></div>
 
 <script>
-    document.getElementById("checkreply").onclick = function() {replyOpen()};
     document.getElementById("cancel").onclick = function() {replyOpen()};
 
     

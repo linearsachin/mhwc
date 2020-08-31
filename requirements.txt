@@ -26,9 +26,7 @@ ipcalc==1.99.0
 kombu==3.0.37
 psycopg2==2.8.5
 python-dateutil==1.5
-python-dotenv==0.13.0
 pytz==2020.1
-redis==3.5.0
 requests==2.24.0
 six==1.15.0
 soupsieve==2.0.1

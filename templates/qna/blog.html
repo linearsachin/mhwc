@@ -6,45 +6,40 @@
 {% endblock extra_head %}
 {% block content %}
 
-        <div style="text-align-last: left;width: 90%; margin: 0 auto;">
-                       <div class="old-div">
-                <p>
-                    <span class="span-style">
-                        <time class="time-style">
-                            {{blog.get_date}}
-                        </time>
-                    </span> 
-                    <span class="author-name">
-                        {{blog.author}}
+<div style="text-align-last: left;width: 90%; margin: 0 auto;">
+    <div class="old-div">
+        <p>
+            <span class="span-style">
+                <time class="time-style">
+                    {{blog.get_date}}
+                </time>
+            </span> 
+            <span class="author-name">
+                {{blog.author}}
+            </span>
+        </p> 
+        <h2>
+            <a class="header" href="{{blog.url}}">
+            {{blog.title }}
+            </a>
+        </h2>
+        <p class="reader">
+            {{blog.text|linebreaks}}
+        </p>
 
-                </p> 
-                <h2 >
-                    <a class="header" href="{{blog.url}}">
-                    {{blog.title }}
-                    
-                    </a>
-                </h2>
-                <p class="reader">
-                    {{blog.text|linebreaks}}
-                </p>
+    </div> 
 
-            </div> 
+    <hr class="dash-style">
 
-            <hr class="dash-style">
-
-            <div class="new-div">
-                <h3 class="new-heading">Recent Blog</h3>
-                    <hr class="new-line">
-                    {% for rblogs in recent  %}
-                    <span class="new-span"> 
-                        <a  class="new-a" href="{{rblogs.url}}">{{rblogs.title}}</a>
-                    </span> 
-                    <hr class="new-line">
-                    {% endfor %}
-            </div>
-            
-            
-            <!-- .entry-preview-wrapper .clearfix -->
-        </div><!-- .entry-preview
-
+    <div class="new-div">
+        <h3 class="new-heading">Recent Blog</h3>
+        <hr class="new-line">
+        {% for rblogs in recent  %}
+        <span class="new-span"> 
+            <a  class="new-a" href="https://peer-space.herokuapp.com/blog/{{rblogs.slug}}">{{rblogs.title}}</a>
+        </span> 
+        <hr class="new-line">
+        {% endfor %}
+    </div>    
+</div>
 {% endblock content %}
