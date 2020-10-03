@@ -119,10 +119,12 @@ def randomString(stringLength=15):
 def get_qoute():
     with open('qoutes.csv',encoding='UTF-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        for row in csv_reader:
-            if row[1]==str(datetime.date.today()):
-                return row[0]
-        return "“Shame dies when stories are told in safe places.” ― Ann Voskamp"
+        try:
+            for row in csv_reader:
+                if row[1]==str(datetime.date.today()):
+                    return row[0]
+        except:
+            return "“Shame dies when stories are told in safe places.” ― Ann Voskamp"
         
 class HomeView(View):
     def get(self, request):
