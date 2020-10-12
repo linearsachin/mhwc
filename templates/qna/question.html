@@ -16,7 +16,7 @@
                 <div class="time small"><small>{{question.get_time_diff}}</small></div>
                 <p  class="white-text" style="text-align-last: left;"><b>{{question.question_text}}</b><p>
                 <div class="container-fluid">
-                    <button typ="button" id="replybtn" class=" btn btn-grey" onclick="replyOpen()" style="color:whitesmoke;">Reply</button><br>
+                    <button id="replybtn" class="btn btn-small white-text" style="margin-top: 0.5em;background-color:#4d4d4d;" onclick="replyOpen()">Reply</button><br>
                 </div>
                 <div class="container-fluid" style="display:none;" id="replyID">
                     <div class="row">
@@ -34,10 +34,10 @@
                                 {{rForm.captcha }}
                             </div>
                             <div class="col s6">
-                                <input  class="btn btn-grey" type="submit" name="reply"  id="myBtn" style="color:whitesmoke;"></input>
+                                <button  class="btn btn-small white-text" style="margin-top: 0.5em;background-color:#4d4d4d;" type="submit" name="reply"  id="myBtn">Submit</button>
                             </div>
                             <div class="col s6">
-                                <button  class="btn btn-grey"  type="reset" name="cancel" onclick="replyOpen()" id="cancel" style="color:whitesmoke;">Cancel</button>
+                                <a  class="btn btn-small white-text" style="margin-top: 0.5em;background-color:#4d4d4d;" type="reset" name="cancel" onclick="replyOpen()" id="cancel">Cancel</a>
                             </div>
                           </div>
                         </form>
@@ -82,7 +82,7 @@
             document.getElementById('replybtn').style.display = 'none'
         }
     }
-    $('#reply').val('New Text');
+    $('#reply').val('');
 
 </script>
 

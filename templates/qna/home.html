@@ -83,7 +83,7 @@
         {% comment %} <div class="g-recaptcha" data-sitekey="{{recaptcha}}"></div> {% endcomment %}
         <label for="question"><h4>Ask Anything</h4></label>
         {{qForm.as_p}}
-        <input  class="btn btn-grey buttonsInput" type="submit" name="reply" style="color:whitesmoke" id="myBtn">  </input>
+        <input  class="btn btn-grey buttonsInput" type="submit" name="reply" style="color:whitesmoke" id="myBtn"></input>
     </form>
   </div>
   <br>
@@ -161,8 +161,8 @@
 
 
 <script>
-    document.getElementById("question").onfocus = function() {openCaptcha()};
-    document.getElementById("question").onblur = function() {openCaptcha()};
+    document.getElementById("question").onclick = function() {openCaptcha()};
+    {% comment %} document.getElementById("question").onblur = function() {openCaptcha()}; {% endcomment %}
 
 
     function openCaptcha() {
