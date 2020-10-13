@@ -24,7 +24,7 @@ class QuestionsAdmin(admin.ModelAdmin):
 
 class ReplyAdmin(admin.ModelAdmin):
     list_display = ('question','time','if_prof')
-    list_filter = ['time','if_prof']
+    list_filter = ['question','time','if_prof']
 
 def listToString(s):  
     str1 =  "" 
