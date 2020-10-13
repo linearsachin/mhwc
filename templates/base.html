@@ -122,7 +122,7 @@
      
         {% if messages %}
           {% for message in messages %}
-            <div class="card-alert card teal lighten-5">
+            <div class="card-alert card teal lighten-5" style="width:70%; margin:auto">
                 <div class="card-content teal-text">
                   {{message}}
                 </div>
@@ -131,6 +131,7 @@
                 </button>
             </div>
           {% endfor %}
+          <br>
         {% endif %}
         {% block content %}
         {% endblock content %}

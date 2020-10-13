@@ -10,6 +10,8 @@ from .models import (
     Blog,
     BlogLink,
 )
+from django.db.models import F
+
 import os  
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 
@@ -286,6 +288,8 @@ class PublicQuestionView(View):
                 reply = form.cleaned_data.get('text')
                 qpk = self.request.POST.get('question_pk')
                 question = PublicQuestion.objects.get(pk = qpk)
+                question.n_of_replies = F('n_of_replies') + 1
+                question.save()
                 time = tz.now()
                 if request.user.username == 'sachin':
                     is_prof = 'moderator'

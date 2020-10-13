@@ -33,7 +33,7 @@ class PublicQuestion(models.Model):
     slug = models.SlugField(max_length=50)
     time = models.DateTimeField()
     is_approved = models.BooleanField(default=False)
-    ip = models.GenericIPAddressField(blank=True, null=True)
+    n_of_replies = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.question_text)[:20]+"..."
@@ -86,7 +86,7 @@ class PublicReply(models.Model):
     reply_text = models.TextField()
     time = models.DateTimeField()
     if_prof = models.CharField(max_length = 50,blank=True, null=True)
-
+    
     def __str__(self):
         return str(self.reply_text)[:20]+"..."
     def get_time_diff(self):
