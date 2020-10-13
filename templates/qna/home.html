@@ -37,7 +37,12 @@
         color: white;
         margin: 1em;
       }
-
+      .nreplyCircle{
+        background-color:white;
+        padding: 3.5px 7px;
+        border-radius: 1200px;
+        
+      }
 
     </style>
 {% endblock extra_head %}
@@ -115,7 +120,16 @@
             <div class="time small"><small>{{question.get_time_diff}}</small></div>
             <div class="white-text" id="question" style="text-align-last:left;word-wrap: break-word;">{{question.question_text}}</div>
             <div class="text-left">
-              <a href="{% url 'publicquestion' slug=question.slug  %}"  class="waves-effect waves-light btn btn-small white-text" style="margin-top: 0.5em;background-color:#4d4d4d;">Reply</a>
+
+              <!-- {% if question.n_of_replies == 0 %}
+                <p class="red-text">be the first one to help them</p>
+              {% elif question.n_of_replies == 1 %}
+                <p class="red-text">This question has {{question.n_of_replies}} reply</p>
+              {% else %}
+                <p class="red-text">This question has {{question.n_of_replies}} replies</p>
+              {% endif %} -->
+              
+              <a href="{% url 'publicquestion' slug=question.slug  %}"  class="waves-effect waves-light btn btn-small white-text" style="margin-top: 0.5em;background-color:#4d4d4d;">Reply <span class="nreplyCircle black-text">{{question.n_of_replies}}</span></a>
             </div>
           </div>
         </div>
