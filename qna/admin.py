@@ -12,8 +12,8 @@ from .models import (
 from .views import send_mail
 # Register your models here.
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display = ('question_text','is_approved','time')
-    list_filter = ['is_approved','time']
+    list_display = ('question_text','is_approved','n_of_replies','time')
+    list_filter = ['is_approved','n_of_replies','time']
     actions = ['approve_questions', ]
     def approve_questions(self,request,queryset):
         queryset.update(is_approved=True)
