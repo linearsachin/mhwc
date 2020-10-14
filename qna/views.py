@@ -123,7 +123,10 @@ def get_qoute():
         csv_reader = csv.reader(csv_file, delimiter=',')
         try:
             for row in csv_reader:
+                print(str(datetime.date.today()))
+                print(row[1])
                 if row[1]==str(datetime.date.today()):
+                    print(row)
                     return row[0]
         except:
             return "“Shame dies when stories are told in safe places.” ― Ann Voskamp"
@@ -134,6 +137,7 @@ class HomeView(View):
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)
         qForm = QuestionSubmission()
         qoute = get_qoute()
+        print(qoute)
         if request.user.is_authenticated:
             forumid = request.user.username
         else:
