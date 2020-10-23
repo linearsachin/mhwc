@@ -123,10 +123,7 @@ def get_qoute():
         csv_reader = csv.reader(csv_file, delimiter=',')
         try:
             for row in csv_reader:
-                print(str(datetime.date.today()))
-                print(row[1])
                 if row[1]==str(datetime.date.today()):
-                    print(row)
                     return row[0]
         except:
             return "“Shame dies when stories are told in safe places.” ― Ann Voskamp"
@@ -160,15 +157,10 @@ class HomeView(View):
                 trun = random.randint(20, 30)
                 slug_= slugify(ques[:trun]+" "+randomString(3))
                 time = tz.now()
-                try:
-                    ip=request.META.get('HTTP_X_FORWARDED_FOR')
-                except:
-                    ip=request.META.get('REMOTE_ADDR')
                 PublicQuestion.objects.create(
                     question_text = ques,
                     slug = slug_,
                     time= time,
-                    ip=ip
                 )
                 send_mail('email_mods.csv',[slug_],True)
             url = 'https://peer-space.herokuapp.com/public-question/'+str(slug_)
