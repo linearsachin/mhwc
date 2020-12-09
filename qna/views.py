@@ -2,8 +2,6 @@ from django.shortcuts import render,redirect
 from django.utils.text import slugify
 from django.views.generic import View ,ListView
 from django.http import HttpResponse
-import mimetypes
-
 from .models import (
     # Question,
     # Reply,
@@ -333,15 +331,3 @@ def handler404(request,exception=404):
     return render(request, 'qna/404.html', status=404)
 def handler500(request,exception=404):
     return render(request, 'qna/500.html', status=500)
-
-def Brave(request):
-    
-    # fill these variables with real values
-    fl_path = "/.well-known/brave-rewards-verification.txt"
-    filename = "brave-rewards-verification.txt"
-
-    fl = open(fl_path, 'r')
-    mime_type, _ = mimetypes.guess_type(fl_path)
-    response = HttpResponse(fl, content_type=mime_type)
-    response['Content-Disposition'] = "attachment; filename=%s" % filename
-    return response

@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: peer-space.herokuapp.com
-Token: 3d94948ac4b6b0121e1be4408772608dfa9ccaf9a56ea5fbc1389a7ee07eaeb6

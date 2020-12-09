@@ -14,7 +14,6 @@ urlpatterns = [
     path('log-out/', auth_views.LogoutView.as_view(template_name='qna/forum-out.html'),name='forum-out'),
     path('blogs/', views.BlogLinksView.as_view(),name='blog-links'),
     path('blog/<blog_slug>', views.BlogView.as_view(),name='blog'),
-    path('.well-known/brave-rewards-verification.txt', views.Brave)
 
 
 ]
