@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.utils.text import slugify
 from django.views.generic import View ,ListView
 from django.http import HttpResponse
+import mimetypes
+
 from .models import (
     # Question,
     # Reply,
