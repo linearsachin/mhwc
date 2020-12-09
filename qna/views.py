@@ -338,7 +338,7 @@ def Brave(request):
     fl_path = "/.well-known/brave-rewards-verification.txt"
     filename = "brave-rewards-verification.txt"
 
-    fl = open(fl_path, 'r’)
+    fl = open(fl_path, 'r')
     mime_type, _ = mimetypes.guess_type(fl_path)
     response = HttpResponse(fl, content_type=mime_type)
     response['Content-Disposition'] = "attachment; filename=%s" % filename
