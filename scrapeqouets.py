@@ -32,7 +32,7 @@ with open('qoutes1.csv',mode='r',encoding='UTF-8') as csv_file:
     date =str(datetime.date.today())
     print(date)
     for index,row in enumerate(csv_reader):
-        # print(row)
+        # print(row[1])
         if row[1] == date:
-            print(index,row)
+            print(index,row[0])
         
