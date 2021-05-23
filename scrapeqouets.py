@@ -11,9 +11,9 @@ r = requests.get(URL,headers=headers)
 soup = BeautifulSoup(r.content, 'html.parser')
 allNews = soup.find(class_="entry-content")
 allP = allNews.find_all('ul')
-print(len(allP))
 
 date = datetime.date.today()+datetime.timedelta(days=-1)
+print(date)
 for p in allP:
     try:
         with open('qoutes1.csv', mode='a',encoding='utf-8') as f:
