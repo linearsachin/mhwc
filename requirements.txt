@@ -7,7 +7,7 @@ celery==3.1.26.post2
 certifi==2020.6.20
 chardet==3.0.4
 dj-database-url==0.5.0
-Django==2.2.13
+Django==2.2.21
 django-admin-honeypot==1.1.0
 django-blacklist==0.4.1
 django-block-ip==0.2.0
