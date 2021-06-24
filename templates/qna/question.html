@@ -24,7 +24,7 @@
 
         <div class="container">
             <div class="card-panel teal row" style="padding: 2em;">
-                <div class="time small"><small>{{question.get_time_diff}}</small></div>
+                <div class="time small"><small>{{question.time|date:'Y-m-d H:i'}}</small></div>
                 <p  class="white-text" style="text-align-last: left;"><b>{{question.question_text}}</b></p>
 
 
@@ -76,7 +76,7 @@
                 <div class="" style="text-align-last: left;">
                     <button id="replybtn{{forloop.counter}}" class="black-text link-btn" style="" onclick="replyOpen('{{forloop.counter}}');">Reply</button>
                     {% if allrep %}
-                    <button id="allreplybtn{{forloop.counter}}" class="black-text link-btn" style="" onclick="allReplyOpen('{{forloop.counter}}');">View Replies</button>
+                    <button id="allreplybtn{{forloop.counter}}" class="black-text link-btn" style="margin-left:1em" onclick="allReplyOpen('{{forloop.counter}}');">View Replies</button>
                     {% endif %}
                 </div>
                 <div class="container-fluid" style="display:none;" id="replyID{{forloop.counter}}">
@@ -113,7 +113,7 @@
                 <div style="margin-left:2em; display:none;" id="all-reply{{forloop.counter}}">
                 <hr>
                 {% for allreply in allrep %}
-                <p  class="white-text" style="text-align-last: left;word-wrap: break-word;">{{allreply.reply_text}}</p>
+                <p  class="white-text" style="text-align-last: left;word-wrap: break-word;">{{allreply.reply_text}} <small class="time">- {{allreply.get_time_diff}}</small></p>
                 <hr>
                 {% endfor %}
                 </div>
