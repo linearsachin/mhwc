@@ -35,7 +35,11 @@ class ReplySubmission(forms.Form):
         'cols':10,
         'style':"text-align-last: center;margin:auto;color:black "
     }))
-    hidden = forms.HiddenInput()
+    # hidden = forms.CharField(widget=forms.TextInput(attrs={
+    #     'id':"decider", 
+    #     'name':"decider" ,
+    #     'type':"hidden",
+    # }))
     captcha = ReCaptchaField(label =False,widget=widgets.ReCaptchaV2Checkbox(
         attrs={
             'data-theme': 'dark',

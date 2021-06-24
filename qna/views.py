@@ -7,6 +7,7 @@ from .models import (
     # Reply,
     PublicQuestion,
     PublicReply,
+    RepliesReply,
     Blog,
     BlogLink,
 )
@@ -123,7 +124,6 @@ def get_qoute():
         csv_reader = csv.reader(csv_file, delimiter=',')
         # try:
         for row in csv_reader:
-            print(row)
             if row[1]==str(datetime.date.today()):
                 return row[0]
         # except:
@@ -135,7 +135,6 @@ class HomeView(View):
         question_filter = PublicQuestionFilter(request.GET, queryset=questions)
         qForm = QuestionSubmission()
         qoute = get_qoute()
-        print(qoute)
         if request.user.is_authenticated:
             forumid = request.user.username
         else:
@@ -266,11 +265,16 @@ class PublicQuestionView(View):
         try:
             question = PublicQuestion.objects.get(slug = slug,is_approved=True)
             replies = PublicReply.objects.filter(question=question).order_by('-time')
+            allreplies= []
+            for reply in replies:
+                allreplies.append((reply,(RepliesReply.objects.filter(question=reply).order_by('-time'))))
+
             rForm = ReplySubmission()
             context = {
                 'question':question,
                 'replies': replies,
                 'rForm':rForm,
+                'allreplies':allreplies,
             }
             return render(request ,'qna/question.html',context)
         except:
@@ -280,28 +284,44 @@ class PublicQuestionView(View):
 
     def post(self, request, *args, **kwargs):
         form = ReplySubmission(self.request.POST or None)
+        print(self.request.POST)
         try:
             if form.is_valid():
                 reply = form.cleaned_data.get('text')
                 qpk = self.request.POST.get('question_pk')
-                question = PublicQuestion.objects.get(pk = qpk)
-                question.n_of_replies = F('n_of_replies') + 1
-                question.save()
-                time = tz.now()
+                question_id = self.request.POST.get('question_id')
+                decider = self.request.POST.get('decider')
                 if request.user.username == 'sachin':
-                    is_prof = 'moderator'
+                    is_prof = 'Moderator'
                 elif request.user.username == 'kikstartz':
-                    is_prof= 'professional'
+                    is_prof= 'Professional'
                 else:
                     is_prof=''
-                PublicReply.objects.create(
-                    reply_text = reply,
-                    question  = question,
-                    time=time,
-                    if_prof=is_prof,
-                )
-                messages.success(request,"Your reply was added")
-            return redirect("publicquestion",slug=question.slug)
+                time = tz.now()
+                if decider == "Reply":
+                    question = PublicQuestion.objects.get(pk = qpk)
+                    question.n_of_replies = F('n_of_replies') + 1
+                    question.save()
+                    PublicReply.objects.create(
+                        reply_text = reply,
+                        question  = question,
+                        time=time,
+                        if_prof=is_prof,
+                    )
+                    messages.success(request,"Your reply was added")
+                    return redirect("publicquestion",slug=question.slug)
+                else:
+                    reply_ = PublicReply.objects.get(pk = qpk)
+                    question = PublicQuestion.objects.get(pk = question_id)
+
+                    RepliesReply.objects.create(
+                        reply_text = reply,
+                        question  = reply_,
+                        time=time,
+                        if_prof=is_prof,
+                    )
+                    messages.success(request,"Your reply was added")
+                    return redirect("publicquestion",slug=question.slug)
         except:
             messages.warning(request,"There was a problem adding your reply")
             return redirect("home")

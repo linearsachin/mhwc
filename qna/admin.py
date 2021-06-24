@@ -6,6 +6,7 @@ from .models import (
     PublicReply,
     BlogLink,
     Blog,
+    RepliesReply,
     MoodCheck,
     MoodQ,
 )
@@ -55,6 +56,8 @@ class BlogsAdmin(admin.ModelAdmin):
 admin.site.register(PublicQuestion,QuestionsAdmin)
 admin.site.register(PublicReply,ReplyAdmin)
 admin.site.register(BlogLink)
+admin.site.register(RepliesReply)
+
 admin.site.register(Blog,BlogsAdmin)
 admin.site.register(MoodCheck)
 admin.site.register(MoodQ)
