@@ -14,7 +14,7 @@ django-block-ip==0.2.0
 django-celery==3.3.1
 django-crontab==0.7.1
 django-defender==0.7.0
-django-filter==2.3.0
+django-filter==2.4.0
 django-google-analytics-app==4.4.1
 django-heroku==0.3.1
 django-ratelimit==2.0.0
