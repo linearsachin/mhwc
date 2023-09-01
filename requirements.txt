@@ -27,7 +27,7 @@ kombu==3.0.37
 psycopg2==2.8.5
 python-dateutil==1.5
 pytz==2020.1
-requests==2.24.0
+requests==2.31.0
 six==1.15.0
 soupsieve==2.0.1
 sqlparse==0.3.1
